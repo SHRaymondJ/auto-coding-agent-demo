@@ -1,5 +1,28 @@
 # Progress Log
 
+## 2026-02-09 - Task: 项目基础配置
+
+### What was done:
+- 安装 Supabase 客户端依赖: @supabase/supabase-js, @supabase/ssr
+- 安装 UI 组件库依赖: clsx, tailwind-merge
+- 创建 .env.local.example 环境变量模板文件，包含:
+  - Supabase 配置 (URL, ANON_KEY, SERVICE_ROLE_KEY)
+  - 智谱AI 配置 (ZHIPU_API_KEY)
+  - 火山引擎配置 (VOLC_ACCESS_KEY, VOLC_SECRET_KEY, IMAGE_ENDPOINT, VIDEO_ENDPOINT)
+- 创建 src/lib/utils.ts 工具函数文件，实现 cn() 函数用于合并 Tailwind CSS 类名
+
+### Testing:
+- 运行 npm run lint 通过
+- 运行 npm run build 构建成功
+- 开发服务器正常运行在 http://localhost:3000
+- 浏览器访问页面正常显示
+
+### Notes:
+- .env.local.example 提交到版本控制，实际 .env.local 被 .gitignore 忽略
+- cn() 函数使用 clsx + tailwind-merge 实现类名合并，避免 Tailwind 类名冲突
+
+---
+
 ## 2026-02-09 - Task: 项目架构设计和任务拆解
 
 ### What was done:
