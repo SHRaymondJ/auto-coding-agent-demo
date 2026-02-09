@@ -175,7 +175,7 @@
         "实现 Supabase Storage 上传功能",
         "实现 Supabase Storage 删除功能（重新生成时清理旧文件）"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 14,

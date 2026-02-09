@@ -1,5 +1,49 @@
 # Progress Log
 
+## 2026-02-10 - Task 13: 媒体数据访问层
+
+### What was done:
+- 创建 lib/db/media.ts 媒体数据访问层
+
+**图片操作：**
+  - createImage() - 创建图片记录（version 自动递增）
+  - getImagesBySceneId() - 获取分镜的所有图片
+  - getLatestImageBySceneId() - 获取最新图片
+  - getImageById() - 获取单个图片
+  - deleteImagesBySceneId() - 删除分镜的所有图片
+
+**视频操作：**
+  - createVideo() - 创建视频记录（version 自动递增）
+  - updateVideoTaskId() - 更新视频任务ID
+  - getVideosBySceneId() - 获取分镜的所有视频
+  - getLatestVideoBySceneId() - 获取最新视频
+  - getVideoById() - 获取单个视频
+  - deleteVideosBySceneId() - 删除分镜的所有视频
+
+**Storage 操作：**
+  - uploadFile() - 上传文件到 Supabase Storage
+  - uploadAndCreateImage() - 上传图片并创建数据库记录
+  - uploadAndCreateVideo() - 上传视频并创建数据库记录
+  - deleteFile() - 删除单个文件
+  - deleteProjectFiles() - 删除项目的所有文件
+  - deleteOldSceneImages() / deleteOldSceneVideos() - 重新生成时清理旧文件
+  - downloadAndUpload() - 从 URL 下载并上传到 Storage
+  - getMediaBySceneId() - 获取分镜的所有媒体
+
+### Testing:
+- 运行 npm run lint 通过
+- 运行 npm run build 构建成功
+- TypeScript 类型检查通过
+
+### Notes:
+- Storage 路径格式：{userId}/{projectId}/{fileName}
+- 图片/视频版本号自动递增，用于追踪重新生成
+- 删除旧文件时先删 Storage 再删数据库记录
+- 支持从 URL 下载并上传（用于火山引擎 API 返回的图片/视频 URL）
+- 自定义错误类 MediaError（not_found/unauthorized/storage_error/database_error）
+
+---
+
 ## 2026-02-10 - Task 12: 分镜数据访问层
 
 ### What was done:
