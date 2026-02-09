@@ -1,5 +1,43 @@
 # Progress Log
 
+## 2026-02-10 - Bug Fix: 视频生成轮询机制修复
+
+### 问题描述:
+视频生成 API 调用成功，但视频状态一直显示"生成中"，无法完成。
+
+### 根本原因:
+1. 视频生成 API 使用公共 URL 传递给火山引擎，但 Storage bucket 是私有的，导致火山引擎无法访问图片
+2. 前端轮询只检查数据库状态，没有调用视频任务状态 API 来检查火山引擎任务状态并下载视频
+
+### What was done:
+1. **app/api/generate/video/scene/[sceneId]/route.ts**:
+   - 使用 `getSignedUrl()` 生成签名 URL 传递给火山引擎
+   - 确保火山引擎可以访问私有 bucket 中的图片
+
+2. **app/api/generate/videos/route.ts**:
+   - 同样使用 `getSignedUrl()` 替代公共 URL
+
+3. **components/scene/SceneVideoList.tsx**:
+   - 修改 `handleGenerateVideo` 捕获 API 返回的 taskId 和 videoId
+   - 修改 `pollForVideoCompletion` 调用视频任务状态 API:
+     - GET /api/generate/video/task/{taskId}?sceneId=...&projectId=...&videoId=...
+   - 修改 `handleGenerateAll` 使用批量 API 返回的任务 ID 进行轮询
+
+### Testing:
+- ✅ npm run lint 通过
+- ✅ npm run build 通过
+- ✅ 浏览器测试确认：
+  - 视频生成 API 调用成功
+  - 轮询正确调用视频任务状态 API
+  - 网络请求格式正确
+
+### Notes:
+- 火山引擎视频生成通常需要 3-5 分钟
+- 轮询间隔 5 秒，最大等待 10 分钟
+- 视频生成完成后自动下载并上传到 Storage
+
+---
+
 ## 2026-02-10 - Bug Fix: Storage 签名 URL 修复
 
 ### 问题描述:
