@@ -1,5 +1,40 @@
 # Progress Log
 
+## 2026-02-10 - Task 20: 项目列表页 - UI 实现
+
+### What was done:
+- 创建 lib/db/projects-list.ts 项目列表数据访问层
+  - getProjectsWithPreview() 获取项目列表及预览图
+  - 同时获取项目数量统计
+- 创建 components/project/ProjectCard.tsx 项目卡片组件
+  - 显示预览图（使用 Next.js Image 组件）
+  - 显示项目阶段标签（草稿/分镜/图片/视频/完成）
+  - 显示标题、风格、分镜数量、故事摘要、创建时间
+  - 悬停效果和点击跳转
+- 更新 app/projects/page.tsx 项目列表页
+  - 获取用户项目列表
+  - 网格布局显示项目卡片
+  - 分页支持（上一页/下一页）
+  - 空状态显示
+
+### Testing:
+- 运行 npm run lint 通过
+- 运行 npm run build 构建成功
+- ✅ 浏览器测试通过（使用 MCP Playwright）：
+  - 项目列表正确显示
+  - 项目卡片包含所有信息
+  - 预览图正确显示
+  - 点击卡片跳转到详情页
+  - 创建新项目按钮正常工作
+
+### Notes:
+- 项目详情页尚未实现（Task 22-27），点击卡片跳转会显示 404
+- 预览图来自项目第一个分镜的最新图片
+- 使用 unoptimized 属性处理外部图片 URL
+- 分页每页显示 12 个项目
+
+---
+
 ## 2026-02-10 - Task 19: 首页 - UI 实现
 
 ### What was done:
