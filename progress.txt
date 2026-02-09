@@ -1,5 +1,33 @@
 # Progress Log
 
+## 2026-02-10 - Task 10: 火山引擎视频生成 API 封装
+
+### What was done:
+- 创建 lib/ai/volc-video.ts - 火山引擎 Seedance 视频生成
+  - createVideoTask() - 创建视频任务（从图片生成视频）
+  - getVideoTaskStatus() - 查询视频任务状态
+  - waitForVideoTask() - 等待视频任务完成（支持进度回调）
+  - generateVideo() - 便捷函数：创建任务并等待完成
+  - regenerateVideo() - 重新生成视频
+  - HMAC-SHA256 签名认证（与图片 API 相同）
+  - 错误处理和重试逻辑（最多3次）
+  - 请求超时处理（60秒）
+  - 支持轮询配置（间隔、最大等待时间、进度回调）
+
+### Testing:
+- 运行 npm run lint 通过
+- 运行 npm run build 构建成功
+- TypeScript 类型检查通过
+
+### Notes:
+- 火山引擎视频使用异步任务模式：先创建任务获取 task_id，然后轮询状态
+- 默认轮询间隔 5 秒，最大等待时间 10 分钟
+- 视频 API 类型定义已在 Task 9 的 types/ai.ts 中定义
+- 使用 i2v_high_aes_general 模型（image-to-video）
+- 默认视频时长 5 秒
+
+---
+
 ## 2026-02-10 - Task 8 & 9: AI API 封装
 
 ### What was done:
