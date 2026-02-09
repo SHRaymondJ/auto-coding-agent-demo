@@ -1,5 +1,36 @@
 # Progress Log
 
+## 2026-02-10 - Task 29: Loading 状态
+
+### What was done:
+- 创建 app/loading.tsx 全局加载组件
+  - 显示旋转动画和"加载中..."文字
+- 创建 components/ui/Spinner.tsx 加载动画组件
+  - 支持 sm、md、lg 三种尺寸
+  - 可自定义 className
+- 创建 components/ui/Skeleton.tsx 骨架屏组件
+  - Skeleton 基础组件
+  - ProjectCardSkeleton 项目卡片骨架
+  - ProjectListSkeleton 项目列表骨架
+  - SceneCardSkeleton 分镜卡片骨架
+  - SceneListSkeleton 分镜列表骨架
+- 创建 app/projects/loading.tsx 项目列表页加载状态
+  - 显示 Header 占位和项目列表骨架
+- 创建 app/projects/[id]/loading.tsx 项目详情页加载状态
+  - 显示完整的项目详情页骨架
+
+### Testing:
+- 运行 npm run lint 通过
+- 运行 npm run build 构建成功
+- 加载状态组件已正确注册
+
+### Notes:
+- 使用 Tailwind CSS 的 animate-pulse 和 animate-spin 动画
+- 骨架屏组件支持深色模式
+- 加载状态会在页面导航时自动显示
+
+---
+
 ## 2026-02-10 - Task 28: 错误处理和边界情况
 
 ### What was done:
