@@ -77,12 +77,10 @@ export function SceneDescriptionList({
         throw new Error("Failed to confirm all scenes");
       }
 
-      setLocalScenes((prev) =>
-        prev.map((s) => ({ ...s, description_confirmed: true }))
-      );
+      // Refresh the page to show the next stage (images)
+      window.location.reload();
     } catch (error) {
       console.error("Failed to confirm all scenes:", error);
-    } finally {
       setIsConfirmingAll(false);
     }
   };
