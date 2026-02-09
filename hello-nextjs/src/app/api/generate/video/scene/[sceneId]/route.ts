@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { getSceneById, updateSceneVideoStatus } from "@/lib/db/scenes";
 import { getProjectById } from "@/lib/db/projects";
-import { getLatestImageBySceneId, createProcessingVideo } from "@/lib/db/media";
+import { getLatestImageBySceneId, createProcessingVideo, getSignedUrl } from "@/lib/db/media";
 import {
   createVideoTask,
   isVolcVideoConfigured,
@@ -86,13 +86,17 @@ export async function POST(request: Request, { params }: RouteParams) {
       );
     }
 
+    // Generate a fresh signed URL for the image (valid for 1 hour)
+    // This ensures the video API can access the image even from private bucket
+    const imageUrl = await getSignedUrl(latestImage.storage_path, 3600);
+
     // Update scene video status to processing
     await updateSceneVideoStatus(sceneId, "processing");
 
     try {
       // Create video task using Volc API
       const task = await createVideoTask(
-        latestImage.url,
+        imageUrl,
         scene.description,
         {
           duration: 5,

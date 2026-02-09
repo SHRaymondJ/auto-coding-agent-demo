@@ -10,7 +10,7 @@ import {
   updateSceneVideoStatus,
 } from "@/lib/db/scenes";
 import { getProjectById, updateProjectStage } from "@/lib/db/projects";
-import { getLatestImageBySceneId, createProcessingVideo } from "@/lib/db/media";
+import { getLatestImageBySceneId, createProcessingVideo, getSignedUrl } from "@/lib/db/media";
 import {
   createVideoTask,
   isVolcVideoConfigured,
@@ -148,11 +148,14 @@ export async function POST(request: Request) {
         continue;
       }
 
+      // Generate a fresh signed URL for the image (valid for 1 hour)
+      const imageUrl = await getSignedUrl(latestImage.storage_path, 3600);
+
       const result = await createSceneVideoTask(
         scene.id,
         scene.order_index,
         scene.description,
-        latestImage.url
+        imageUrl
       );
       results.push(result);
     }

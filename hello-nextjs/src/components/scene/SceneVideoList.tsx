@@ -48,12 +48,19 @@ export function SceneVideoList({ projectId, scenes }: SceneVideoListProps) {
   const handleGenerateVideo = async (sceneId: string) => {
     const response = await fetch(`/api/generate/video/scene/${sceneId}`, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ projectId }),
     });
 
     if (!response.ok) {
       const data = await response.json();
       throw new Error(data.error ?? "Failed to generate video");
     }
+
+    const data = await response.json();
+    const { taskId, videoId } = data;
 
     // Update local state to show processing
     setLocalScenes((prev) =>
@@ -62,11 +69,15 @@ export function SceneVideoList({ projectId, scenes }: SceneVideoListProps) {
       )
     );
 
-    // Poll for completion
-    pollForVideoCompletion(sceneId);
+    // Poll for completion using task status API
+    pollForVideoCompletion(sceneId, taskId, videoId);
   };
 
-  const pollForVideoCompletion = async (sceneId: string) => {
+  const pollForVideoCompletion = async (
+    sceneId: string,
+    taskId: string,
+    videoId: string
+  ) => {
     const maxAttempts = 120; // 10 minutes max
     const interval = 5000; // 5 seconds
 
@@ -74,24 +85,42 @@ export function SceneVideoList({ projectId, scenes }: SceneVideoListProps) {
       await new Promise((resolve) => setTimeout(resolve, interval));
 
       try {
-        const response = await fetch(`/api/projects/${projectId}`);
-        if (!response.ok) continue;
+        // Call video task status API to check and download video
+        const statusResponse = await fetch(
+          `/api/generate/video/task/${taskId}?sceneId=${sceneId}&projectId=${projectId}&videoId=${videoId}`
+        );
 
-        const { project } = await response.json();
-        const scene = project.scenes.find((s: SceneWithMedia) => s.id === sceneId);
+        if (!statusResponse.ok) continue;
 
-        if (scene?.video_status === "completed") {
-          setLocalScenes((prev) =>
-            prev.map((s) =>
-              s.id === sceneId
-                ? { ...s, video_status: "completed", videos: scene.videos }
-                : s
-            )
-          );
+        const statusData = await statusResponse.json();
+
+        if (statusData.status === "completed") {
+          // Fetch updated project data to get the video URL
+          const projectResponse = await fetch(`/api/projects/${projectId}`);
+          if (projectResponse.ok) {
+            const { project } = await projectResponse.json();
+            const scene = project.scenes.find(
+              (s: SceneWithMedia) => s.id === sceneId
+            );
+            setLocalScenes((prev) =>
+              prev.map((s) =>
+                s.id === sceneId
+                  ? { ...s, video_status: "completed", videos: scene?.videos ?? [] }
+                  : s
+              )
+            );
+          } else {
+            // Still mark as completed even if we can't get the project data
+            setLocalScenes((prev) =>
+              prev.map((s) =>
+                s.id === sceneId ? { ...s, video_status: "completed" } : s
+              )
+            );
+          }
           return;
         }
 
-        if (scene?.video_status === "failed") {
+        if (statusData.status === "failed") {
           setLocalScenes((prev) =>
             prev.map((s) =>
               s.id === sceneId ? { ...s, video_status: "failed" } : s
@@ -136,15 +165,18 @@ export function SceneVideoList({ projectId, scenes }: SceneVideoListProps) {
         throw new Error("Failed to generate videos");
       }
 
-      // Start polling for all scenes
-      localScenes.forEach((scene) => {
-        if (scene.video_status === "pending") {
+      const data = await response.json();
+      const results = data.results || [];
+
+      // Start polling for all scenes that had tasks created
+      results.forEach((result: { sceneId: string; taskId?: string; videoId?: string; success: boolean }) => {
+        if (result.success && result.taskId && result.videoId) {
           setLocalScenes((prev) =>
             prev.map((s) =>
-              s.id === scene.id ? { ...s, video_status: "processing" } : s
+              s.id === result.sceneId ? { ...s, video_status: "processing" } : s
             )
           );
-          pollForVideoCompletion(scene.id);
+          pollForVideoCompletion(result.sceneId, result.taskId, result.videoId);
         }
       });
     } catch (error) {
