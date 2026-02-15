@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { useLanguage } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
@@ -11,25 +11,75 @@ import { Button } from "../ui/Button";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isServiceOpen, setIsServiceOpen] = useState(false);
   const { locale, setLocale, t } = useLanguage();
 
+  const lastScrollY = useRef(0);
+  const scrollTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const serviceItems = t.header.serviceItems;
   const navItems = t.header.navItems;
 
-  useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+  const handleScroll = useCallback(() => {
+    const currentY = window.scrollY;
+
+    // Always show header when near the top
+    if (currentY <= 24) {
+      setIsScrolled(false);
+      setIsHidden(false);
+      lastScrollY.current = currentY;
+      return;
+    }
+
+    setIsScrolled(true);
+
+    const delta = currentY - lastScrollY.current;
+
+    if (delta > 5) {
+      // Scrolling down — hide
+      setIsHidden(true);
+    } else if (delta < -5) {
+      // Scrolling up — show
+      setIsHidden(false);
+    }
+
+    // Show header when scrolling stops
+    if (scrollTimer.current) clearTimeout(scrollTimer.current);
+    scrollTimer.current = setTimeout(() => {
+      setIsHidden(false);
+    }, 400);
+
+    lastScrollY.current = currentY;
   }, []);
+
+  useEffect(() => {
+    lastScrollY.current = window.scrollY;
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollTimer.current) clearTimeout(scrollTimer.current);
+    };
+  }, [handleScroll]);
+
+  useEffect(() => {
+    if (isMobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileOpen]);
 
   return (
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 border-b border-transparent transition-all duration-300",
         isScrolled ? "bg-bg-white/95 shadow-md backdrop-blur supports-[backdrop-filter]:bg-bg-white/80" : "bg-transparent",
+        isHidden && !isMobileOpen ? "-translate-y-full" : "translate-y-0",
       )}
     >
       <Container width="wide">
@@ -118,8 +168,8 @@ export function Header() {
 
       <div
         className={cn(
-          "fixed inset-0 z-40 bg-bg-white transition-transform duration-300 lg:hidden",
-          isMobileOpen ? "translate-y-0" : "-translate-y-full",
+          "fixed inset-0 z-50 bg-bg-white transition-transform duration-300 lg:hidden",
+          isMobileOpen ? "translate-y-0" : "-translate-y-full pointer-events-none",
         )}
       >
         <Container>

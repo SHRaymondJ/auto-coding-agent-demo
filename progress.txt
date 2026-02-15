@@ -1,27 +1,25 @@
 # Progress Log
 
-## 2026-02-15 - Tasks 30-32: 多语言支持（基础架构 + 首页翻译 + 子页面翻译）
+## 2026-02-15 - Task 39: 导航栏行为优化 - 滚动隐藏/显示
 
 ### What was done:
-- Task 30: 自建 i18n 方案（LanguageProvider + useLanguage hook + useSyncExternalStore）
-  - 创建 lib/i18n/（context.tsx, types.ts, zh.ts, en.ts, index.ts）
-  - Header 语言切换按钮（CN/EN toggle），localStorage 持久化
-  - 默认语言中文，服务端渲染中文避免 hydration mismatch
-- Task 31: 首页所有组件中英文翻译（Hero, CoreServices, Stats, WhyChooseUs, BottomCTA, Header, Footer）
-- Task 32: 所有子页面中英文翻译（7个服务页、新闻列表/详情、文化、联系我们、关于我们）
-- 修复上一个 session 遗留的 broken imports（newsArticles → getNewsArticles）
-- 修复 lint 错误（setState in useEffect → useSyncExternalStore）
-- 修复 mock-data.ts 服务端兼容性（避免导入 "use client" 模块）
+- Header 组件新增滚动方向检测逻辑（useCallback + useRef 追踪 lastScrollY）
+- 向下滚动超过 5px 阈值时隐藏导航栏（-translate-y-full）
+- 向上滚动超过 5px 阈值时显示导航栏（translate-y-0）
+- 停止滚动 400ms 后自动显示导航栏（setTimeout 定时器）
+- 页面顶部（scrollY <= 24）始终显示导航栏
+- 移动端菜单打开时不隐藏导航栏（isHidden && !isMobileOpen）
+- 使用 CSS transition-all duration-300 实现平滑滑入/滑出动画
 
 ### Testing:
 - npm run lint 通过（0 errors）
 - npm run build 通过（29 页面全部静态生成）
-- 浏览器测试：首页 CN/EN 切换正常，新闻页 EN 翻译正常，无 console errors
+- 浏览器测试：首页和子页面（/about）均验证滚动隐藏/显示/停止恢复三种行为正常
 
 ### Notes:
-- i18n 采用客户端方案（非 URL 路由），通过 useSyncExternalStore 读取 localStorage 避免 hydration mismatch
-- 新闻详情页（server component）使用 zh 作为默认 locale 生成静态页面
-- 所有 38 个任务已完成
+- 未使用 framer-motion，CSS transition 已足够实现平滑的掉落效果
+- 5px 阈值防止微小抖动触发状态切换
+- 400ms 停止检测定时器在每次滚动事件中重置
 
 ---
 
