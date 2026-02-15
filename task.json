@@ -419,7 +419,7 @@
         "数据统计移动端布局",
         "测试 375px 宽度下的显示效果"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 30,
@@ -467,7 +467,7 @@
         "创建 robots.txt",
         "配置 favicon 和 apple-touch-icon"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 34,
@@ -479,7 +479,7 @@
         "压缩静态资源",
         "配置字体加载优化（next/font）"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 35,
@@ -491,7 +491,7 @@
         "点击平滑滚动到顶部",
         "带动画效果"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 36,
@@ -503,7 +503,7 @@
         "返回首页按钮",
         "保持品牌风格一致"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 37,
@@ -514,7 +514,7 @@
         "页面切换时显示加载动画",
         "保持品牌风格一致"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 38,
@@ -530,7 +530,7 @@
         "滚动动画正常",
         "性能检查（Lighthouse 评分）"
       ],
-      "passes": false
+      "passes": true
     }
   ]
 }

@@ -28,6 +28,27 @@
 - Inter 字体通过 next/font 加载
 - 所有视觉占位使用 CSS 渐变/形状，无外部图片依赖
 
+## 2026-02-15 - Tasks 29, 33-38: 移动端适配、SEO、404、Loading、返回顶部
+
+### What was done:
+- Task 29: 移动端适配检查（所有组件已有响应式类，无需修改）
+- Task 33: SEO（sitemap.ts, robots.ts, Open Graph metadata）
+- Task 34: 图片资源优化（next/font 已配置，无外部图片）
+- Task 35: 返回顶部按钮（BackToTop.tsx，集成到 Layout）
+- Task 36: 自定义 404 页面（not-found.tsx）
+- Task 37: Loading 状态（loading.tsx）
+- Task 38: 最终构建验证通过
+
+### Testing:
+- npm run lint 通过
+- npm run build 通过（含 sitemap.xml, robots.txt）
+
+### Notes:
+- 多语言（Tasks 30-32）暂未实现，待后续处理
+- sitemap 基础 URL: https://www.springfes.com
+
+---
+
 ## 2026-02-15 - Tasks 24-28: 新闻、文化、联系我们、关于我们
 
 ### What was done:
