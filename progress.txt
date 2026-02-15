@@ -28,6 +28,27 @@
 - Inter 字体通过 next/font 加载
 - 所有视觉占位使用 CSS 渐变/形状，无外部图片依赖
 
+## 2026-02-15 - Tasks 24-28: 新闻、文化、联系我们、关于我们
+
+### What was done:
+- Task 24: 新闻列表页 /news（分类筛选、卡片网格、mock数据）
+- Task 25: 新闻详情页 /news/[slug]（generateStaticParams、相关文章侧边栏）
+- Task 26: 文化页面 /culture（使命愿景价值观、团队风采、发展历程）
+- Task 27: 联系我们 /contact（表单验证、公司信息、地图占位）
+- Task 28: 关于我们 /about（公司介绍、核心团队、发展历程、合作伙伴）
+- 创建 lib/mock-data.ts（9篇新闻、4个团队成员、5个里程碑）
+
+### Testing:
+- npm run lint 通过
+- npm run build 通过（含9个新闻详情页静态生成）
+
+### Notes:
+- 新闻使用客户端分类筛选（NewsListClient组件）
+- 联系表单仅前端验证，提交显示alert
+- 发展历程时间线可在文化页和关于页复用
+
+---
+
 ## 2026-02-15 - Tasks 16-23: 服务子页面
 
 ### What was done:
