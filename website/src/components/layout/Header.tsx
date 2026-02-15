@@ -84,7 +84,7 @@ export function Header() {
     >
       <Container width="wide">
         <div className="flex h-20 items-center justify-between">
-          <Link href="/" className="text-2xl font-bold tracking-tight text-brand-navy">
+          <Link href="/" className="text-2xl font-bold tracking-tight text-brand-orange">
             Spring FES
           </Link>
 
@@ -174,7 +174,7 @@ export function Header() {
       >
         <Container>
           <div className="flex h-20 items-center justify-between">
-            <span className="text-2xl font-bold tracking-tight text-brand-navy">Spring FES</span>
+            <span className="text-2xl font-bold tracking-tight text-brand-orange">Spring FES</span>
             <button
               className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-default text-text-heading"
               onClick={() => setIsMobileOpen(false)}

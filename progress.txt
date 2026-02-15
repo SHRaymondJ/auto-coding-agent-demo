@@ -1,5 +1,24 @@
 # Progress Log
 
+## 2026-02-15 - Task 40: Logo 颜色更新为橙色
+
+### What was done:
+- Header PC端 Logo 文字颜色从 text-brand-navy 改为 text-brand-orange (#FF6B00)
+- Header 移动端菜单 Logo 文字颜色同步更新
+- Footer Logo 文字颜色同步更新
+- brand-orange 颜色变量已在 globals.css @theme 中预定义，无需新增
+
+### Testing:
+- npm run lint 通过（0 errors）
+- npm run build 通过（29 页面全部静态生成）
+- 浏览器测试：PC端 Header、移动端菜单、Footer 三处 Logo 均显示为橙色
+
+### Notes:
+- 仅修改了 Header.tsx 和 Footer.tsx 两个文件，共 3 处 text-brand-navy → text-brand-orange
+- 无其他组件引用 Logo 颜色，改动范围可控
+
+---
+
 ## 2026-02-15 - Task 39: 导航栏行为优化 - 滚动隐藏/显示
 
 ### What was done:

@@ -16,7 +16,7 @@ export function Footer() {
       <Container>
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <p className="text-2xl font-bold tracking-tight text-brand-navy">Spring FES</p>
+            <p className="text-2xl font-bold tracking-tight text-brand-orange">Spring FES</p>
             <p className="mt-4 text-sm leading-relaxed text-text-body">{t.footer.tagline}</p>
           </div>
 

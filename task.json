@@ -556,7 +556,7 @@
         "确保 Logo 颜色在所有页面一致",
         "如有 Logo 图片资源，同步更新"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 41,
