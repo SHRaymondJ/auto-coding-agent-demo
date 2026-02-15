@@ -1,5 +1,32 @@
 # Progress Log
 
+## 2026-02-15 - Tasks 51-60: 全站设计稿还原收尾 + 新页面 + 兼容性（并行委派）
+
+### What was done:
+- Task 51: 服务子页面内容区域设计稿还原 — ServiceFeatures 图标容器升级（h-14 w-14 渐变底+ring+阴影）、hover 渐变边框、标题描述间渐变分隔线；ServiceProcess 步骤连接改为渐变线+箭头（桌面横向/移动端垂直）、编号外圈光晕、hover 微交互
+- Task 52: 新闻列表页设计稿还原 — 分类筛选升级为品牌蓝渐变 pill、卡片图片占位增加网格纹理+品牌浮标、hover 边框品牌化+阴影加深、日期增加图标、标题 hover 下划线动画
+- Task 53: 新闻详情页设计稿还原 — 顶部增加 radial-gradient 装饰、返回链接加左箭头+hover 左移、h2 加左侧品牌蓝竖线、侧边栏卡片 hover 上移效果
+- Task 54: 文化页面设计稿还原 — Hero 增加网格纹理+浮动光球动画、价值观卡片加编号(01/02/03)+hover 发光边框、团队照片占位增加纹理+hover 缩放、发展历程改为左侧时间线布局
+- Task 55: 联系我们页面设计稿还原 — 表单卡片顶部品牌渐变装饰条、输入框 focus 光晕、必填 * 标记、公司信息加 SVG 图标、地图占位改为品牌渐变+pin 图标、全部文案接入 i18n
+- Task 56: DESIGN hub 新页面 — 创建 app/design-hub/page.tsx + DesignHubClient.tsx，Hero+设计服务4卡片+作品画廊6卡片+CTA，响应式网格布局
+- Task 57: 移动端首页设计稿还原 — HeroSection 移动端隐藏3D地球+标题降级 text-3xl+按钮堆叠、StatsSection 改为 grid-cols-2、GlobalNetwork 移动端列表化、各组件 375px 适配
+- Task 58: 全站动画效果优化 — 统一 whileInView viewport.amount(0.2-0.28)、duration(0.52-0.68s)、easing cubic-bezier(0.22,1,0.36,1)、Button hover scale(1.02)/active scale(0.98)、BackToTop 入退场动画、transform-gpu 加速
+- Task 59: 图片资源替换 — 新闻卡片/团队照片/地图占位/合作伙伴 Logo 全部升级为高质量 CSS 占位（渐变+网格纹理+图标装饰）
+- Task 60: Mac 兼容性修复 — globals.css 添加 -webkit-font-smoothing/antialiased、-webkit-text-size-adjust、overflow-hidden+圆角容器 translateZ(0)、Header backdrop-blur Safari 兜底
+
+### Testing:
+- npm run lint 通过（0 errors）
+- npm run build 通过（30 页面静态生成，含新增 /design-hub）
+- 所有关键页面 HTTP 200 验证通过（/, /news, /news/[slug], /culture, /contact, /design-hub, /services/store-operations, /about）
+
+### Notes:
+- 使用并行委派策略：10 个任务同时委派给 visual-engineering agents
+- Task 53 首次因 stale timeout 失败，重试后成功
+- Task 59 因无实际图片资源，使用高质量 CSS 效果替代（品牌渐变+网格纹理+图标）
+- 新增 /design-hub 路由，需要后续在 Header 导航中添加入口
+
+---
+
 ## 2026-02-15 - Tasks 41-50: 全站视觉设计稿还原（并行委派）
 
 ### What was done:

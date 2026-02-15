@@ -80,7 +80,9 @@ export function Header() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 border-b border-transparent transition-all duration-300",
-        isScrolled ? "bg-bg-white/95 shadow-md backdrop-blur supports-[backdrop-filter]:bg-bg-white/80" : "bg-transparent",
+        isScrolled
+          ? "bg-bg-white/95 shadow-md backdrop-blur supports-[backdrop-filter]:bg-bg-white/80 supports-[(-webkit-backdrop-filter:blur(0))]:bg-bg-white/80"
+          : "bg-transparent",
         isHidden && !isMobileOpen ? "-translate-y-full" : "translate-y-0",
       )}
     >
@@ -117,7 +119,7 @@ export function Header() {
               </button>
               <div
                 className={cn(
-                  "absolute left-1/2 top-full mt-2 w-56 -translate-x-1/2 rounded-xl border border-border-light bg-bg-white/95 py-2 shadow-lg backdrop-blur-sm transition-all duration-200",
+                  "absolute left-1/2 top-full mt-2 w-56 -translate-x-1/2 rounded-xl border border-border-light bg-bg-white/95 py-2 shadow-lg backdrop-blur-sm supports-[(-webkit-backdrop-filter:blur(0))]:bg-bg-white/80 transition-all duration-200",
                   isServiceOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-1 opacity-0",
                 )}
               >
@@ -190,7 +192,7 @@ export function Header() {
 
       <div
         className={cn(
-          "fixed inset-0 z-50 bg-bg-white/98 backdrop-blur-sm transition-transform duration-300 lg:hidden",
+          "fixed inset-0 z-50 bg-bg-white/98 backdrop-blur-sm supports-[(-webkit-backdrop-filter:blur(0))]:bg-bg-white/90 transition-transform duration-300 lg:hidden",
           isMobileOpen ? "translate-y-0" : "-translate-y-full pointer-events-none",
         )}
       >

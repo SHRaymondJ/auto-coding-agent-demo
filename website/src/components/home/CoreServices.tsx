@@ -6,6 +6,8 @@ import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { useLanguage } from "@/lib/i18n";
 
+const smoothEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
 export function CoreServices() {
   const { t } = useLanguage();
   const iconThemes = [
@@ -35,23 +37,24 @@ export function CoreServices() {
     <Section id="core-services" background="white">
       <Container>
         <motion.div
+          className="will-change-transform"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.62, ease: smoothEase }}
         >
-          <h2 className="text-4xl font-bold text-text-heading md:text-5xl">{t.home.coreServices.title}</h2>
+          <h2 className="text-3xl font-bold text-text-heading sm:text-4xl md:text-5xl">{t.home.coreServices.title}</h2>
         </motion.div>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 gap-5 sm:mt-12 sm:gap-6 md:grid-cols-2">
           {t.home.coreServices.services.map((service, index) => (
             <motion.article
               key={service.title}
-              className="group relative overflow-hidden rounded-3xl border border-border-default/70 bg-gradient-to-br from-bg-light via-white to-bg-gray p-8 shadow-[0_10px_30px_rgba(2,20,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              className="group relative overflow-hidden rounded-3xl border border-border-default/70 bg-gradient-to-br from-bg-light via-white to-bg-gray p-6 shadow-[0_10px_30px_rgba(2,20,42,0.08)] transition-all duration-300 transform-gpu will-change-transform hover:-translate-y-1 hover:shadow-xl sm:p-8"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.55, delay: index * 0.08 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.6, delay: index * 0.07, ease: smoothEase }}
             >
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.12),transparent_52%)] opacity-70 transition-opacity duration-300 group-hover:opacity-100" />
               <div className="relative">
@@ -63,8 +66,8 @@ export function CoreServices() {
                     <span className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-white/90" />
                   </span>
                 </span>
-                <h3 className="mt-6 text-2xl font-semibold tracking-tight text-text-heading">{service.title}</h3>
-                <p className="mt-3 max-w-[40ch] text-base leading-relaxed text-text-body">{service.description}</p>
+                <h3 className="mt-5 text-xl font-semibold tracking-tight text-text-heading sm:mt-6 sm:text-2xl">{service.title}</h3>
+                <p className="mt-3 max-w-[40ch] text-sm leading-relaxed text-text-body sm:text-base">{service.description}</p>
               </div>
             </motion.article>
           ))}

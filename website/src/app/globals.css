@@ -36,8 +36,18 @@ body {
   background: var(--color-bg-white);
   color: var(--color-text-body);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+.overflow-hidden.rounded-3xl,
+.overflow-hidden.rounded-2xl,
+.overflow-hidden.rounded-xl {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }

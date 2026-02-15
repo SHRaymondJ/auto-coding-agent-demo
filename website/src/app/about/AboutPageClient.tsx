@@ -64,13 +64,27 @@ export function AboutPageClient() {
             {teamMembers.map((member, index) => (
               <motion.article
                 key={member.id}
-                className="rounded-3xl border border-border-light bg-bg-white p-6"
+                className="group overflow-hidden rounded-3xl border border-border-light bg-bg-white p-6 shadow-[0_10px_28px_rgba(0,51,102,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/35 hover:shadow-[0_20px_44px_rgba(0,51,102,0.16)]"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: Math.min(index * 0.08, 0.24) }}
               >
-                <div className="mb-5 h-14 w-14 rounded-2xl bg-gradient-to-br from-brand-blue/25 via-brand-cyan/18 to-brand-navy/20" />
+                <div className="relative mb-5 h-44 overflow-hidden rounded-2xl">
+                  <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(0,51,102,0.9),rgba(0,123,255,0.66)_48%,rgba(255,107,0,0.45))] transition-transform duration-500 group-hover:scale-105" />
+                  <div className="absolute inset-0 opacity-38 [background-image:linear-gradient(to_right,rgba(255,255,255,0.17)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.17)_1px,transparent_1px)] [background-size:18px_18px]" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(255,255,255,0.35),transparent_36%),radial-gradient(circle_at_78%_84%,rgba(0,51,102,0.32),transparent_45%)]" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="relative h-20 w-20 opacity-95">
+                      <span className="absolute left-1/2 top-1 h-7 w-7 -translate-x-1/2 rounded-full border border-white/65 bg-white/18" />
+                      <span className="absolute left-1/2 top-9 h-10 w-14 -translate-x-1/2 rounded-t-[999px] border border-white/65 bg-white/16" />
+                      <span className="absolute left-1/2 top-13 h-0.5 w-16 -translate-x-1/2 bg-white/65" />
+                    </div>
+                  </div>
+                  <span className="absolute left-4 top-4 rounded-full border border-white/45 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/90 backdrop-blur-sm">
+                    Profile
+                  </span>
+                </div>
                 <h3 className="text-xl font-semibold text-text-heading">{member.name}</h3>
                 <p className="mt-1 text-sm font-medium text-brand-blue">{member.title}</p>
                 <p className="mt-4 text-sm leading-relaxed text-text-body">{member.bio}</p>

@@ -11,6 +11,8 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
+const smoothEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
 const staggerContainer = {
   hidden: {},
   visible: {
@@ -25,7 +27,7 @@ export function HeroSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden bg-[linear-gradient(140deg,#001b3d_0%,#003366_38%,#0059b3_100%)] pt-28 text-text-white">
+    <section className="relative flex min-h-[92vh] items-center overflow-hidden bg-[linear-gradient(140deg,#001b3d_0%,#003366_38%,#0059b3_100%)] pt-24 text-text-white sm:min-h-screen sm:pt-28">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_20%,rgba(34,211,238,0.2),transparent_36%),radial-gradient(circle_at_84%_24%,rgba(255,107,0,0.18),transparent_34%),radial-gradient(circle_at_72%_84%,rgba(0,123,255,0.24),transparent_40%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:72px_72px] opacity-20" />
       <div className="pointer-events-none absolute left-[8%] top-32 h-2 w-2 rounded-full bg-brand-cyan/90 shadow-[0_0_20px_rgba(34,211,238,0.8)]" />
@@ -34,41 +36,41 @@ export function HeroSection() {
       <div className="pointer-events-none absolute right-[18%] top-[64%] h-24 w-24 rounded-full border border-bg-white/20" />
       <Container className="relative">
         <motion.div
-          className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-20"
+          className="grid grid-cols-1 items-center gap-10 will-change-transform lg:grid-cols-2 lg:gap-20"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.35 }}
+          viewport={{ once: true, amount: 0.25 }}
           variants={staggerContainer}
         >
           <motion.div
-            className="relative"
+            className="relative transform-gpu text-center will-change-transform lg:text-left"
             variants={fadeUp}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.62, ease: smoothEase }}
           >
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-brand-cyan/90">Spring FES</p>
-            <h1 className="mt-6 max-w-2xl text-5xl font-bold leading-[1.05] text-text-white sm:text-6xl lg:text-7xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-cyan/90 sm:text-sm sm:tracking-[0.24em]">Spring FES</p>
+            <h1 className="mx-auto mt-5 max-w-2xl text-3xl font-bold leading-[1.08] text-text-white sm:mt-6 sm:text-5xl lg:mx-0 lg:text-7xl">
               {t.home.hero.title}
             </h1>
-            <p className="mt-7 max-w-xl text-base leading-relaxed text-bg-white/85 sm:text-lg">
+            <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-bg-white/85 sm:mt-7 sm:text-lg lg:mx-0">
               {t.home.hero.subtitle}
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <div className="relative">
+            <div className="mx-auto mt-8 flex w-full max-w-sm flex-col items-stretch gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4 lg:mx-0 lg:justify-start">
+              <div className="relative w-full sm:w-auto">
                 <div className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-brand-orange/65 blur-xl" />
-                <Button size="lg" href="/contact" className="relative bg-brand-orange text-white shadow-[0_12px_36px_rgba(255,107,0,0.35)] hover:bg-brand-orange/90">
+                <Button size="lg" href="/contact" className="relative w-full justify-center bg-brand-orange text-white shadow-[0_12px_36px_rgba(255,107,0,0.35)] hover:bg-brand-orange/90 sm:w-auto">
                   {t.home.hero.primaryCta}
                 </Button>
               </div>
-              <Button size="lg" variant="secondary" href="#core-services">
+              <Button size="lg" variant="secondary" href="#core-services" className="w-full justify-center sm:w-auto">
                 {t.home.hero.secondaryCta}
               </Button>
             </div>
           </motion.div>
 
           <motion.div
-            className="relative mx-auto h-[380px] w-full max-w-[540px] sm:h-[430px]"
+            className="relative mx-auto hidden h-[380px] w-full max-w-[540px] transform-gpu will-change-transform sm:h-[430px] lg:block"
             variants={fadeUp}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.68, ease: smoothEase }}
           >
             <div className="absolute inset-0 rounded-[2.5rem] border border-bg-white/15 bg-bg-dark/25 backdrop-blur-[2px]" />
             <div className="absolute inset-[12%] rounded-full bg-[radial-gradient(circle_at_32%_28%,rgba(34,211,238,0.58),rgba(0,123,255,0.2)_38%,rgba(15,23,42,0.92)_72%)] blur-[1px]" />
