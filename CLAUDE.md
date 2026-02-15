@@ -263,7 +263,7 @@ npm run lint     # Run linter
 
 ## Key Rules
 
-1. **One task per session** - Focus on completing one task well
+1. **Ten tasks per session** - Focus on completing ten tasks well
 2. **Test before marking complete** - All steps must pass
 3. **Browser testing for UI changes** - 新建或大幅修改页面必须在浏览器测试
 4. **Document in progress.txt** - Help future agents understand your work

@@ -1,5 +1,28 @@
 # Progress Log
 
+## 2026-02-15 - Task 41: 导航菜单下拉样式优化
+
+### What was done:
+- 添加 usePathname (next/navigation) 实现当前页面菜单项高亮
+- PC端导航链接：当前页面显示 font-semibold + text-brand-blue
+- "服务方案"按钮：当 pathname 以 /services 开头时高亮
+- PC端下拉菜单：去除 border-border-light 边框，padding 从 p-2 增至 p-4，宽度从 w-52 增至 w-64，shadow 从 shadow-xl 增至 shadow-2xl
+- 下拉菜单项：padding 从 px-3 py-2 增至 px-4 py-2.5，间距 space-y-1
+- 当前服务页对应的下拉项显示 bg-bg-light + font-semibold + text-brand-blue
+- 移动端菜单：同步添加当前页面高亮逻辑（首页、导航项、服务项）
+
+### Testing:
+- npm run lint 通过（0 errors）
+- npm run build 通过（29 页面全部静态生成）
+- 浏览器测试：首页"首页"链接高亮正确，服务页"服务方案"按钮高亮正确，下拉菜单中当前服务项高亮正确
+
+### Notes:
+- 仅修改 Header.tsx 一个文件
+- 使用 next/navigation 的 usePathname 获取当前路由
+- 下拉菜单样式更接近设计稿（无边框、更大间距、更强阴影）
+
+---
+
 ## 2026-02-15 - Task 40: Logo 颜色更新为橙色
 
 ### What was done:

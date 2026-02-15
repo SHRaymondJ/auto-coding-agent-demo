@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { useLanguage } from "@/lib/i18n";
@@ -10,6 +11,7 @@ import { Container } from "./Container";
 import { Button } from "../ui/Button";
 
 export function Header() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -89,7 +91,13 @@ export function Header() {
           </Link>
 
           <nav className="hidden items-center gap-8 lg:flex">
-            <Link className="text-sm font-medium text-text-heading transition-colors hover:text-brand-blue" href="/">
+            <Link
+              className={cn(
+                "text-sm transition-colors hover:text-brand-blue",
+                pathname === "/" ? "font-semibold text-brand-blue" : "font-medium text-text-heading",
+              )}
+              href="/"
+            >
               {navItems[0]?.label}
             </Link>
             <div
@@ -98,7 +106,10 @@ export function Header() {
               onMouseLeave={() => setIsServiceOpen(false)}
             >
               <button
-                className="flex items-center gap-1 text-sm font-medium text-text-heading transition-colors hover:text-brand-blue"
+                className={cn(
+                  "flex items-center gap-1 text-sm transition-colors hover:text-brand-blue",
+                  pathname.startsWith("/services") ? "font-semibold text-brand-blue" : "font-medium text-text-heading",
+                )}
                 type="button"
               >
                 {t.header.services}
@@ -106,26 +117,37 @@ export function Header() {
               </button>
               <div
                 className={cn(
-                  "absolute left-1/2 top-full mt-4 w-52 -translate-x-1/2 rounded-2xl border border-border-light bg-bg-white p-2 shadow-xl transition-all duration-200",
+                  "absolute left-1/2 top-full mt-2 w-56 -translate-x-1/2 rounded-xl border border-border-light bg-bg-white/95 py-2 shadow-lg backdrop-blur-sm transition-all duration-200",
                   isServiceOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-1 opacity-0",
                 )}
               >
-                {serviceItems.map((item) => (
-                  <Link
-                    key={item.slug}
-                    href={`/services/${item.slug}`}
-                    className="block rounded-xl px-3 py-2 text-sm text-text-body transition-colors hover:bg-bg-light hover:text-brand-blue"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+                {serviceItems.map((item) => {
+                  const serviceHref = `/services/${item.slug}`;
+                  const isActiveService = pathname === serviceHref;
+
+                  return (
+                    <Link
+                      key={item.slug}
+                      href={serviceHref}
+                      className={cn(
+                        "block px-5 py-2 text-sm transition-colors hover:bg-bg-light hover:text-brand-blue",
+                        isActiveService ? "font-semibold text-brand-blue" : "text-text-body",
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
 
             {navItems.slice(1).map((item) => (
               <Link
                 key={item.href}
-                className="text-sm font-medium text-text-heading transition-colors hover:text-brand-blue"
+                className={cn(
+                  "text-sm transition-colors hover:text-brand-blue",
+                  pathname === item.href ? "font-semibold text-brand-blue" : "font-medium text-text-heading",
+                )}
                 href={item.href}
               >
                 {item.label}
@@ -168,7 +190,7 @@ export function Header() {
 
       <div
         className={cn(
-          "fixed inset-0 z-50 bg-bg-white transition-transform duration-300 lg:hidden",
+          "fixed inset-0 z-50 bg-bg-white/98 backdrop-blur-sm transition-transform duration-300 lg:hidden",
           isMobileOpen ? "translate-y-0" : "-translate-y-full pointer-events-none",
         )}
       >
@@ -187,25 +209,36 @@ export function Header() {
           <div className="mt-6 space-y-3 pb-8">
             <Link
               href="/"
-              className="block rounded-xl bg-bg-light px-4 py-3 text-base font-medium text-text-heading"
+              className={cn(
+                "block rounded-xl bg-bg-light px-4 py-3 text-base",
+                pathname === "/" ? "font-semibold text-brand-blue" : "font-medium text-text-heading",
+              )}
               onClick={() => setIsMobileOpen(false)}
             >
               {navItems[0]?.label}
             </Link>
 
-            <div className="rounded-xl bg-bg-light p-4">
-              <p className="mb-3 text-base font-medium text-text-heading">{t.header.services}</p>
-              <div className="space-y-2">
-                {serviceItems.map((item) => (
-                  <Link
-                    key={item.slug}
-                    href={`/services/${item.slug}`}
-                    className="block rounded-lg px-3 py-2 text-sm text-text-body transition-colors hover:bg-bg-gray hover:text-brand-blue"
-                    onClick={() => setIsMobileOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+            <div className="rounded-xl border border-border-light bg-bg-white p-4">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-text-muted">{t.header.services}</p>
+              <div className="space-y-1">
+                {serviceItems.map((item) => {
+                  const serviceHref = `/services/${item.slug}`;
+                  const isActiveService = pathname === serviceHref;
+
+                  return (
+                    <Link
+                      key={item.slug}
+                      href={serviceHref}
+                      className={cn(
+                        "block rounded-lg px-3 py-2 text-sm transition-colors hover:bg-bg-light hover:text-brand-blue",
+                        isActiveService ? "font-semibold text-brand-blue" : "text-text-body",
+                      )}
+                      onClick={() => setIsMobileOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
 
@@ -213,7 +246,10 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="block rounded-xl bg-bg-light px-4 py-3 text-base font-medium text-text-heading"
+                className={cn(
+                  "block rounded-xl bg-bg-light px-4 py-3 text-base",
+                  pathname === item.href ? "font-semibold text-brand-blue" : "font-medium text-text-heading",
+                )}
                 onClick={() => setIsMobileOpen(false)}
               >
                 {item.label}
