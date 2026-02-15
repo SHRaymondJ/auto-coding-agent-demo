@@ -4,11 +4,14 @@ import { motion } from "framer-motion";
 
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-import { milestones, teamMembers } from "@/lib/mock-data";
-
-const partners = ["Amazon", "TikTok Shop", "Shopify", "Meta", "Google", "Klaviyo"];
+import { useLanguage } from "@/lib/i18n";
+import { getMilestones, getTeamMembers } from "@/lib/mock-data";
 
 export function AboutPageClient() {
+  const { locale, t } = useLanguage();
+  const teamMembers = getTeamMembers(locale);
+  const milestones = getMilestones(locale);
+
   return (
     <>
       <Section className="relative overflow-hidden pt-36 md:pt-40" background="light">
@@ -21,7 +24,7 @@ export function AboutPageClient() {
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.55 }}
           >
-            关于 Spring FES
+            {t.about.title}
           </motion.h1>
           <motion.p
             className="mt-6 max-w-3xl text-base leading-relaxed text-text-body sm:text-lg"
@@ -30,7 +33,7 @@ export function AboutPageClient() {
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.55, delay: 0.08 }}
           >
-            我们是一家聚焦跨境电商与全球品牌增长的服务公司，以数据化运营、内容创新与全链路协同能力，帮助中国品牌在全球市场建立长期竞争力。
+            {t.about.intro}
           </motion.p>
         </Container>
       </Section>
@@ -38,12 +41,9 @@ export function AboutPageClient() {
       <Section background="white">
         <Container>
           <div className="max-w-4xl space-y-5 text-base leading-relaxed text-text-body md:text-lg">
-            <p>
-              Spring FES 成立以来，持续服务消费电子、家居、个护、美妆与宠物等多个品类品牌。我们坚持“策略与执行一体化”，从市场洞察到渠道落地，帮助团队缩短试错周期。
-            </p>
-            <p>
-              通过覆盖品牌咨询、内容营销、广告投放、履约协同与客户成功的复合能力，我们为客户构建可复制、可扩展、可持续的全球化增长体系。
-            </p>
+            {t.about.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
         </Container>
       </Section>
@@ -57,7 +57,7 @@ export function AboutPageClient() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.55 }}
           >
-            核心团队
+            {t.about.teamTitle}
           </motion.h2>
 
           <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -82,7 +82,7 @@ export function AboutPageClient() {
 
       <Section background="white">
         <Container>
-          <h2 className="text-3xl font-bold text-text-heading md:text-4xl">发展历程</h2>
+          <h2 className="text-3xl font-bold text-text-heading md:text-4xl">{t.about.milestonesTitle}</h2>
           <div className="mt-10 space-y-5">
             {milestones.map((item, index) => (
               <motion.div
@@ -104,9 +104,9 @@ export function AboutPageClient() {
 
       <Section background="navy">
         <Container>
-          <h2 className="text-3xl font-bold text-text-white md:text-4xl">合作伙伴</h2>
+          <h2 className="text-3xl font-bold text-text-white md:text-4xl">{t.about.partnersTitle}</h2>
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-            {partners.map((partner, index) => (
+            {t.about.partners.map((partner, index) => (
               <motion.div
                 key={partner}
                 className="rounded-2xl border border-bg-white/20 bg-bg-white/8 px-4 py-5 text-center text-sm font-semibold text-text-white"

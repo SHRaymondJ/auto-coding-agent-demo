@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/layout/Container";
+import { useLanguage } from "@/lib/i18n";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -11,6 +12,8 @@ const fadeUp = {
 };
 
 export function HeroSection() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden bg-bg-white pt-28">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_18%,_rgba(34,211,238,0.16),transparent_44%),radial-gradient(circle_at_14%_86%,_rgba(0,123,255,0.12),transparent_40%)]" />
@@ -25,17 +28,17 @@ export function HeroSection() {
           >
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-blue">Spring FES</p>
             <h1 className="mt-5 text-4xl font-bold leading-tight text-text-heading sm:text-5xl lg:text-6xl">
-              全球化品牌增长引擎
+              {t.home.hero.title}
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-text-body sm:text-lg">
-              助力中国出海品牌，实现从0到1，从1到全球的跨越式增长
+              {t.home.hero.subtitle}
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Button size="lg" href="/contact">
-                开启全球化之旅
+                {t.home.hero.primaryCta}
               </Button>
               <Button size="lg" variant="secondary" href="#core-services">
-                了解更多
+                {t.home.hero.secondaryCta}
               </Button>
             </div>
           </motion.div>

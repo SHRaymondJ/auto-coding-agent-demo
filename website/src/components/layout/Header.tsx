@@ -3,32 +3,20 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { useLanguage } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 import { Container } from "./Container";
 import { Button } from "../ui/Button";
 
-const serviceItems = [
-  { label: "店铺运营", slug: "shop-operations" },
-  { label: "仓储物流", slug: "warehouse-logistics" },
-  { label: "客户服务", slug: "customer-service" },
-  { label: "IT解决方案", slug: "it-solutions" },
-  { label: "内容直播", slug: "content-live" },
-  { label: "创意工作室", slug: "creative-studio" },
-  { label: "品牌增长", slug: "brand-growth" },
-];
-
-const navItems = [
-  { label: "首页", href: "/" },
-  { label: "成功案例", href: "/cases" },
-  { label: "品牌洞察", href: "/insights" },
-  { label: "关于我们", href: "/about" },
-];
-
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isServiceOpen, setIsServiceOpen] = useState(false);
+  const { locale, setLocale, t } = useLanguage();
+
+  const serviceItems = t.header.serviceItems;
+  const navItems = t.header.navItems;
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 24);
@@ -52,7 +40,7 @@ export function Header() {
 
           <nav className="hidden items-center gap-8 lg:flex">
             <Link className="text-sm font-medium text-text-heading transition-colors hover:text-brand-blue" href="/">
-              首页
+              {navItems[0]?.label}
             </Link>
             <div
               className="group relative"
@@ -63,7 +51,7 @@ export function Header() {
                 className="flex items-center gap-1 text-sm font-medium text-text-heading transition-colors hover:text-brand-blue"
                 type="button"
               >
-                服务方案
+                {t.header.services}
                 <span className="text-xs">▾</span>
               </button>
               <div
@@ -96,11 +84,24 @@ export function Header() {
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <button className="rounded-full border border-border-default px-3 py-2 text-xs font-semibold text-text-body" type="button">
-              CN / EN
-            </button>
+            <div className="inline-flex rounded-full border border-border-default p-1 text-xs font-semibold">
+              <button
+                className={cn("rounded-full px-2 py-1", locale === "zh" ? "bg-brand-blue text-text-white" : "text-text-body")}
+                type="button"
+                onClick={() => setLocale("zh")}
+              >
+                CN
+              </button>
+              <button
+                className={cn("rounded-full px-2 py-1", locale === "en" ? "bg-brand-blue text-text-white" : "text-text-body")}
+                type="button"
+                onClick={() => setLocale("en")}
+              >
+                EN
+              </button>
+            </div>
             <Button href="/contact" size="sm">
-              立即咨询
+              {t.common.contactUs}
             </Button>
           </div>
 
@@ -108,7 +109,7 @@ export function Header() {
             className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-default text-text-heading lg:hidden"
             onClick={() => setIsMobileOpen((value) => !value)}
             type="button"
-            aria-label="切换菜单"
+            aria-label={t.header.menuToggleAria}
           >
             <span className="text-xl">{isMobileOpen ? "×" : "☰"}</span>
           </button>
@@ -128,7 +129,7 @@ export function Header() {
               className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border-default text-text-heading"
               onClick={() => setIsMobileOpen(false)}
               type="button"
-              aria-label="关闭菜单"
+              aria-label={t.header.menuCloseAria}
             >
               <span className="text-xl">×</span>
             </button>
@@ -139,11 +140,11 @@ export function Header() {
               className="block rounded-xl bg-bg-light px-4 py-3 text-base font-medium text-text-heading"
               onClick={() => setIsMobileOpen(false)}
             >
-              首页
+              {navItems[0]?.label}
             </Link>
 
             <div className="rounded-xl bg-bg-light p-4">
-              <p className="mb-3 text-base font-medium text-text-heading">服务方案</p>
+              <p className="mb-3 text-base font-medium text-text-heading">{t.header.services}</p>
               <div className="space-y-2">
                 {serviceItems.map((item) => (
                   <Link
@@ -170,11 +171,24 @@ export function Header() {
             ))}
 
             <div className="flex items-center gap-3 pt-2">
-              <button className="rounded-full border border-border-default px-3 py-2 text-xs font-semibold text-text-body" type="button">
-                CN / EN
-              </button>
+              <div className="inline-flex rounded-full border border-border-default p-1 text-xs font-semibold">
+                <button
+                  className={cn("rounded-full px-2 py-1", locale === "zh" ? "bg-brand-blue text-text-white" : "text-text-body")}
+                  type="button"
+                  onClick={() => setLocale("zh")}
+                >
+                  CN
+                </button>
+                <button
+                  className={cn("rounded-full px-2 py-1", locale === "en" ? "bg-brand-blue text-text-white" : "text-text-body")}
+                  type="button"
+                  onClick={() => setLocale("en")}
+                >
+                  EN
+                </button>
+              </div>
               <Button href="/contact" size="sm" onClick={() => setIsMobileOpen(false)}>
-                立即咨询
+                {t.common.contactUs}
               </Button>
             </div>
           </div>

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
+import { useLanguage } from "@/lib/i18n";
 
 interface ServiceStep {
   number: string;
@@ -16,6 +17,8 @@ interface ServiceProcessProps {
 }
 
 export function ServiceProcess({ steps }: ServiceProcessProps) {
+  const { t } = useLanguage();
+
   return (
     <Section background="light">
       <Container>
@@ -25,7 +28,7 @@ export function ServiceProcess({ steps }: ServiceProcessProps) {
           viewport={{ once: true, amount: 0.28 }}
           transition={{ duration: 0.55 }}
         >
-          <h2 className="text-3xl font-bold text-text-heading md:text-4xl">服务流程</h2>
+          <h2 className="text-3xl font-bold text-text-heading md:text-4xl">{t.serviceShared.processTitle}</h2>
         </motion.div>
 
         <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-4">

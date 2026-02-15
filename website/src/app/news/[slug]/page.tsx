@@ -5,19 +5,25 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { Layout } from "@/components/layout/Layout";
 import { Section } from "@/components/layout/Section";
-import { newsArticles } from "@/lib/mock-data";
+import { getNewsArticles } from "@/lib/mock-data";
+import { zh } from "@/lib/i18n/zh";
 
 interface NewsDetailPageProps {
   params: Promise<{ slug: string }>;
 }
 
+function getDefaultArticles() {
+  return getNewsArticles("zh");
+}
+
 export function generateStaticParams() {
-  return newsArticles.map((article) => ({ slug: article.slug }));
+  return getDefaultArticles().map((article) => ({ slug: article.slug }));
 }
 
 export async function generateMetadata({ params }: NewsDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const article = newsArticles.find((item) => item.slug === slug);
+  const articles = getDefaultArticles();
+  const article = articles.find((item) => item.slug === slug);
 
   if (!article) {
     return {
@@ -33,13 +39,14 @@ export async function generateMetadata({ params }: NewsDetailPageProps): Promise
 
 export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
   const { slug } = await params;
-  const article = newsArticles.find((item) => item.slug === slug);
+  const allArticles = getDefaultArticles();
+  const article = allArticles.find((item) => item.slug === slug);
 
   if (!article) {
     notFound();
   }
 
-  const relatedArticles = newsArticles.filter((item) => item.slug !== article.slug).slice(0, 3);
+  const relatedArticles = allArticles.filter((item) => item.slug !== article.slug).slice(0, 3);
 
   return (
     <Layout>
@@ -49,7 +56,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
             href="/news"
             className="inline-flex items-center text-sm font-semibold text-brand-blue transition-colors hover:text-brand-navy"
           >
-            ← 返回品牌洞察
+            {zh.news.backToList}
           </Link>
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <span className="rounded-full bg-brand-blue/10 px-3 py-1 text-xs font-semibold text-brand-blue">{article.category}</span>
@@ -76,7 +83,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
             </article>
 
             <aside className="h-fit rounded-3xl border border-border-light bg-bg-light p-6">
-              <h3 className="text-lg font-semibold text-text-heading">相关文章</h3>
+              <h3 className="text-lg font-semibold text-text-heading">{zh.news.relatedArticles}</h3>
               <div className="mt-5 space-y-4">
                 {relatedArticles.map((related) => (
                   <div key={related.slug} className="rounded-2xl border border-border-light bg-bg-white p-4">

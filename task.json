@@ -432,7 +432,7 @@
         "Header 语言切换按钮功能实现",
         "默认语言为中文"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 31,
@@ -443,7 +443,7 @@
         "Header 和 Footer 中英文翻译",
         "验证中英文切换正常"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 32,
@@ -454,7 +454,7 @@
         "新闻、文化、联系我们、关于我们页面翻译",
         "验证所有页面中英文切换正常"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 33,

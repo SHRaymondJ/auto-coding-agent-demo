@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
+import { useLanguage } from "@/lib/i18n";
 
 interface ServiceFeature {
   icon: string;
@@ -16,6 +17,8 @@ interface ServiceFeaturesProps {
 }
 
 export function ServiceFeatures({ features }: ServiceFeaturesProps) {
+  const { t } = useLanguage();
+
   return (
     <Section background="white">
       <Container>
@@ -25,7 +28,7 @@ export function ServiceFeatures({ features }: ServiceFeaturesProps) {
           viewport={{ once: true, amount: 0.28 }}
           transition={{ duration: 0.55 }}
         >
-          <h2 className="text-3xl font-bold text-text-heading md:text-4xl">核心服务模块</h2>
+          <h2 className="text-3xl font-bold text-text-heading md:text-4xl">{t.serviceShared.featuresTitle}</h2>
         </motion.div>
 
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">

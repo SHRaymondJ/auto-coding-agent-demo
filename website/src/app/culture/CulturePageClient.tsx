@@ -4,33 +4,13 @@ import { motion } from "framer-motion";
 
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-import { milestones } from "@/lib/mock-data";
-
-const valueCards = [
-  {
-    title: "使命",
-    content: "让中国品牌在全球市场绽放光芒",
-  },
-  {
-    title: "愿景",
-    content: "成为最值得信赖的跨境电商品牌服务伙伴",
-  },
-  {
-    title: "价值观",
-    content: "客户至上、数据驱动、持续创新、合作共赢",
-  },
-];
-
-const galleryMembers = [
-  { name: "王嘉琪", title: "品牌策略顾问" },
-  { name: "徐昊然", title: "海外运营经理" },
-  { name: "李安娜", title: "内容创意策划" },
-  { name: "黄逸辰", title: "数据分析师" },
-  { name: "郑雨桐", title: "客户成功经理" },
-  { name: "吴辰宇", title: "项目交付负责人" },
-];
+import { useLanguage } from "@/lib/i18n";
+import { getMilestones } from "@/lib/mock-data";
 
 export function CulturePageClient() {
+  const { locale, t } = useLanguage();
+  const milestones = getMilestones(locale);
+
   return (
     <>
       <Section className="relative overflow-hidden pt-36 md:pt-40" background="navy">
@@ -43,7 +23,7 @@ export function CulturePageClient() {
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.55 }}
           >
-            企业文化
+            {t.culture.title}
           </motion.h1>
         </Container>
       </Section>
@@ -51,7 +31,7 @@ export function CulturePageClient() {
       <Section background="white">
         <Container>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {valueCards.map((item, index) => (
+            {t.culture.values.map((item, index) => (
               <motion.article
                 key={item.title}
                 className="rounded-3xl border border-border-light bg-bg-light p-8"
@@ -77,11 +57,11 @@ export function CulturePageClient() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.55 }}
           >
-            团队风采
+            {t.culture.teamTitle}
           </motion.h2>
 
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {galleryMembers.map((member, index) => (
+            {t.culture.galleryMembers.map((member, index) => (
               <motion.div
                 key={member.name}
                 className="overflow-hidden rounded-3xl border border-border-light bg-bg-white"
@@ -110,7 +90,7 @@ export function CulturePageClient() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.55 }}
           >
-            发展历程
+            {t.culture.milestonesTitle}
           </motion.h2>
           <div className="mt-10 space-y-5">
             {milestones.map((item, index) => (

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { newsArticles } from "@/lib/mock-data";
+import { getNewsArticles } from "@/lib/mock-data";
 
 const BASE_URL = "https://www.springfes.com";
 
@@ -32,7 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: now,
   }));
 
-  const newsEntries: MetadataRoute.Sitemap = newsArticles.map((article) => ({
+  const newsEntries: MetadataRoute.Sitemap = getNewsArticles("zh").map((article) => ({
     url: `${BASE_URL}/news/${article.slug}`,
     lastModified: article.date,
   }));

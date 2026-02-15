@@ -6,11 +6,9 @@ import { useMemo, useState } from "react";
 
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-import { newsArticles, type NewsArticle, type NewsCategory } from "@/lib/mock-data";
+import { useLanguage, type NewsCategory } from "@/lib/i18n";
 
-type NewsTab = "全部" | NewsCategory;
-
-const tabs: NewsTab[] = ["全部", "行业动态", "公司新闻", "干货分享"];
+type NewsTab = "all" | NewsCategory;
 
 const cardGradients = [
   "from-brand-blue/20 via-brand-cyan/10 to-brand-navy/20",
@@ -19,18 +17,23 @@ const cardGradients = [
   "from-brand-cyan/25 via-brand-blue/10 to-brand-navy/20",
 ];
 
-function getFilteredArticles(activeTab: NewsTab): NewsArticle[] {
-  if (activeTab === "全部") {
-    return newsArticles;
-  }
-
-  return newsArticles.filter((article) => article.category === activeTab);
-}
-
 export function NewsListClient() {
-  const [activeTab, setActiveTab] = useState<NewsTab>("全部");
+  const { t } = useLanguage();
+  const [activeTab, setActiveTab] = useState<NewsTab>("all");
 
-  const filteredArticles = useMemo(() => getFilteredArticles(activeTab), [activeTab]);
+  const articles = t.data.newsArticles;
+
+  const tabs: { key: NewsTab; label: string }[] = [
+    { key: "all", label: t.news.tabs.all },
+    { key: "industry", label: t.news.tabs.industry },
+    { key: "company", label: t.news.tabs.company },
+    { key: "insights", label: t.news.tabs.insights },
+  ];
+
+  const filteredArticles = useMemo(() => {
+    if (activeTab === "all") return articles;
+    return articles.filter((article) => article.category === activeTab);
+  }, [activeTab, articles]);
 
   return (
     <>
@@ -44,7 +47,7 @@ export function NewsListClient() {
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.5 }}
           >
-            Insights
+            {t.news.badge}
           </motion.p>
           <motion.h1
             className="mt-4 text-4xl font-bold leading-tight text-text-heading sm:text-5xl"
@@ -53,7 +56,7 @@ export function NewsListClient() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.55, delay: 0.05 }}
           >
-            品牌洞察
+            {t.news.title}
           </motion.h1>
           <motion.p
             className="mt-5 max-w-2xl text-base text-text-body sm:text-lg"
@@ -62,7 +65,7 @@ export function NewsListClient() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.55, delay: 0.1 }}
           >
-            行业动态与干货分享
+            {t.news.subtitle}
           </motion.p>
         </Container>
       </Section>
@@ -78,16 +81,16 @@ export function NewsListClient() {
           >
             {tabs.map((tab) => (
               <button
-                key={tab}
+                key={tab.key}
                 type="button"
-                onClick={() => setActiveTab(tab)}
+                onClick={() => setActiveTab(tab.key)}
                 className={`rounded-full border px-5 py-2 text-sm font-semibold transition-colors ${
-                  activeTab === tab
+                  activeTab === tab.key
                     ? "border-brand-blue bg-brand-blue text-text-white"
                     : "border-border-light bg-bg-white text-text-body hover:border-brand-blue hover:text-brand-blue"
                 }`}
               >
-                {tab}
+                {tab.label}
               </button>
             ))}
           </motion.div>

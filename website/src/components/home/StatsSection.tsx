@@ -5,18 +5,7 @@ import { useEffect, useRef } from "react";
 
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-
-interface Stat {
-  value: number;
-  suffix: string;
-  label: string;
-}
-
-const stats: Stat[] = [
-  { value: 500, suffix: "+", label: "服务品牌" },
-  { value: 100, suffix: "+", label: "覆盖国家" },
-  { value: 10, suffix: "B+", label: "助力GMV" },
-];
+import { useLanguage } from "@/lib/i18n";
 
 function CountUp({ value, suffix }: { value: number; suffix: string }) {
   const count = useMotionValue(0);
@@ -39,6 +28,8 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
 }
 
 export function StatsSection() {
+  const { t } = useLanguage();
+
   return (
     <Section background="light">
       <Container>
@@ -49,7 +40,7 @@ export function StatsSection() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
         >
-          {stats.map((stat, index) => (
+          {t.home.stats.map((stat, index) => (
             <motion.div
               key={stat.label}
               className="rounded-2xl border border-border-light bg-bg-white p-8 text-center shadow-sm"
