@@ -84,6 +84,18 @@ export const en: Dictionary = {
       title: "Ready to start your global expansion?",
       button: "Contact Us",
     },
+    globalNetwork: {
+      title: "Global Service Network",
+      subtitle: "Covering key global markets with localized operational support",
+      locations: [
+        { name: "Shenzhen", role: "Global HQ" },
+        { name: "Los Angeles", role: "North America Hub" },
+        { name: "London", role: "Europe Hub" },
+        { name: "Singapore", role: "Southeast Asia Hub" },
+        { name: "Tokyo", role: "Japan Hub" },
+        { name: "Dubai", role: "Middle East Hub" },
+      ],
+    },
   },
   serviceShared: {
     featuresTitle: "Core Service Modules",

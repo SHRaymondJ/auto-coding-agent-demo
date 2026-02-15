@@ -20,7 +20,7 @@ export function BottomCTA() {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl font-bold leading-tight text-text-white md:text-4xl">{t.home.bottomCta.title}</h2>
+          <h2 className="text-4xl font-bold leading-tight text-text-white md:text-5xl">{t.home.bottomCta.title}</h2>
           <div className="mt-8">
             <Button href="/contact" variant="secondary" size="lg" className="border-bg-white bg-bg-white text-brand-navy hover:bg-[#f3f7ff]">
               {t.home.bottomCta.button}

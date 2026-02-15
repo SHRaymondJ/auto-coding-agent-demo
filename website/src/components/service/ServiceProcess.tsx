@@ -28,7 +28,7 @@ export function ServiceProcess({ steps }: ServiceProcessProps) {
           viewport={{ once: true, amount: 0.28 }}
           transition={{ duration: 0.55 }}
         >
-          <h2 className="text-3xl font-bold text-text-heading md:text-4xl">{t.serviceShared.processTitle}</h2>
+          <h2 className="text-4xl font-bold text-text-heading md:text-5xl">{t.serviceShared.processTitle}</h2>
         </motion.div>
 
         <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-4">
@@ -47,8 +47,8 @@ export function ServiceProcess({ steps }: ServiceProcessProps) {
               <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-blue text-lg font-semibold text-text-white">
                 {step.number}
               </span>
-              <h3 className="mt-5 text-xl font-semibold text-text-heading">{step.title}</h3>
-              <p className="mt-3 leading-relaxed text-text-body">{step.description}</p>
+              <h3 className="mt-5 text-lg font-semibold text-text-heading">{step.title}</h3>
+              <p className="mt-3 text-sm font-normal leading-relaxed text-text-body">{step.description}</p>
             </motion.div>
           ))}
         </div>

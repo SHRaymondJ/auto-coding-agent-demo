@@ -74,6 +74,11 @@ export interface Dictionary {
     stats: { value: number; suffix: string; label: string }[];
     whyChooseUs: { title: string; items: { title: string; description: string }[] };
     bottomCta: { title: string; button: string };
+    globalNetwork: {
+      title: string;
+      subtitle: string;
+      locations: { name: string; role: string }[];
+    };
   };
   serviceShared: {
     featuresTitle: string;

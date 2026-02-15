@@ -1,5 +1,33 @@
 # Progress Log
 
+## 2026-02-15 - Tasks 41-50: 全站视觉设计稿还原（并行委派）
+
+### What was done:
+- Task 41: 导航菜单下拉样式优化 — 去除白色蒙层，改为轻量浮动面板，调整间距，当前页面高亮，PC/移动端统一
+- Task 42: 字体优化 — 服务子页面描述文字 font-weight 降为 normal，h2 全站从 text-3xl/4xl 升级为 text-4xl/5xl，中文字体 PingFang SC/Microsoft YaHei 已在 font stack 中
+- Task 43: 首页 Hero 区域重设计 — 深色 navy 渐变背景，更大标题，CSS 抽象地球/网络可视化，品牌橙色 CTA 按钮
+- Task 44: 首页核心服务卡片重设计 — CSS 图标组合替代 ✦，每卡片独立品牌色主题，渐变表面，hover 微交互
+- Task 45: 首页数据统计区域 — 深色 navy 背景，大号白色数字 (text-6xl/7xl)，保留计数动画，分隔线布局
+- Task 46: 全球服务网络区域 — 新建 GlobalNetwork 组件，深色背景，SVG 连接线，6 个城市节点（深圳/洛杉矶/伦敦/新加坡/东京/迪拜），脉冲动画
+- Task 47: Why Choose Us 重设计 — 编号徽章 (01/02/03) 替代 ●，渐变卡片表面，hover 发光效果
+- Task 48: 合作伙伴 Logo 滚动 — 扩展至 8 个品牌，CSS 无限横向滚动动画，hover 变色效果
+- Task 49: Footer 深色主题 — 从浅色背景改为 brand-navy，白色/浅灰文字，品牌青色 hover，深色社交按钮
+- Task 50: 服务子页面 Hero 增强 — 网格纹理叠加，浮动装饰元素，青色药丸副标题，分阶段入场动画
+- CLAUDE.md 更新 — 新增「Multi-Agent 协调与并行委派」章节
+
+### Testing:
+- npm run lint 通过（0 errors）
+- npm run build 通过（所有页面静态生成）
+- 浏览器测试：首页所有区域正常渲染，服务子页面 Hero 正常
+
+### Notes:
+- 使用并行委派策略：Tasks 43/44/45 同时委派给 3 个 visual-engineering agent，后续 47/48/49/50 再批量委派 4 个
+- 主 Agent 同时处理 Tasks 41/42/46（简单任务）和 i18n 类型更新
+- 新增 globalNetwork 字段到 i18n types/zh/en
+- 新增 GlobalNetwork 组件并集成到首页 page.tsx
+
+---
+
 ## 2026-02-15 - Task 41: 导航菜单下拉样式优化
 
 ### What was done:

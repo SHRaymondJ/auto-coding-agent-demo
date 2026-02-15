@@ -1,5 +1,6 @@
 import { BottomCTA } from "@/components/home/BottomCTA";
 import { CoreServices } from "@/components/home/CoreServices";
+import { GlobalNetwork } from "@/components/home/GlobalNetwork";
 import { HeroSection } from "@/components/home/HeroSection";
 import { StatsSection } from "@/components/home/StatsSection";
 import { TrustBar } from "@/components/home/TrustBar";
@@ -13,6 +14,7 @@ export default function Home() {
       <TrustBar />
       <CoreServices />
       <StatsSection />
+      <GlobalNetwork />
       <WhyChooseUs />
       <BottomCTA />
     </Layout>

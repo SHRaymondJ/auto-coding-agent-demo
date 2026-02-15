@@ -582,7 +582,7 @@
         "检查英文字体 Inter 的 font-weight 映射",
         "全站字体粗细一致性检查"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 43,
@@ -595,7 +595,7 @@
         "还原右侧/背景装饰元素",
         "响应式适配验证"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 44,
@@ -608,7 +608,7 @@
         "调整标题和描述文字样式",
         "响应式适配验证"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 45,
@@ -621,7 +621,7 @@
         "添加品牌 Logo 展示区域（数据统计后）",
         "响应式适配验证"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 46,
@@ -634,7 +634,7 @@
         "添加相关数据标注",
         "响应式适配"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 47,
@@ -647,7 +647,7 @@
         "添加背景装饰元素",
         "响应式适配验证"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 48,
@@ -660,7 +660,7 @@
         "添加更多合作伙伴（Amazon, TikTok Shop, Walmart, Shopify, Meta, Google 等）",
         "响应式适配"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 49,
@@ -674,7 +674,7 @@
         "调整版权信息和备案号样式",
         "响应式适配验证"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 50,
@@ -687,7 +687,7 @@
         "添加背景装饰元素",
         "7个服务页面逐一验证"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 51,

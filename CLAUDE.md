@@ -261,6 +261,67 @@ npm run lint     # Run linter
 
 ---
 
+## Multi-Agent 协调与并行委派（Parallel Delegation）
+
+**核心原则：能并行就并行，不要串行等待。**
+
+当 Agent 具备子 Agent 委派能力时（如 opencode 的 task() 系统），应最大化利用并行执行来提升吞吐量。
+
+### 什么时候应该并行委派
+
+| 场景 | 做法 |
+|------|------|
+| 多个独立的 UI 组件需要修改 | 同时委派给多个 visual-engineering agent |
+| 需要同时查代码和查文档 | explore + librarian 并行 |
+| 多个页面/模块互不依赖 | 每个模块一个 agent 并行处理 |
+| 简单任务自己做 + 复杂任务委派 | 委派复杂任务后，自己继续做简单任务 |
+
+### 什么时候不应该并行
+
+| 场景 | 做法 |
+|------|------|
+| 任务 B 依赖任务 A 的输出 | 串行：先完成 A，再开始 B |
+| 多个 agent 需要修改同一个文件 | 串行：避免冲突 |
+| 需要先了解代码结构才能分配任务 | 先 explore，再委派 |
+
+### 委派最佳实践
+
+1. **启动后立即继续工作**：委派 `run_in_background=true` 后，不要等结果，继续做其他任务
+2. **批量委派**：一次性把所有可并行的任务都委派出去，而不是一个一个来
+3. **详细的 prompt**：子 Agent 是无状态的，必须在 prompt 中提供完整上下文（文件路径、现有代码、约束条件、品牌色值等）
+4. **明确的 MUST DO / MUST NOT DO**：防止子 Agent 越界修改其他文件或引入不需要的依赖
+5. **结果验证**：所有子 Agent 完成后，主 Agent 必须验证结果（lint、build、浏览器测试）
+6. **session_id 复用**：如果子 Agent 的结果需要修正，使用 session_id 继续对话而不是重新开始
+
+### 典型工作流示例
+
+```
+1. 读取 task.json，识别出 10 个待完成任务
+2. 分析依赖关系，找出可并行的任务组
+3. 批量委派：
+   - Task A → visual-engineering agent (background)
+   - Task B → visual-engineering agent (background)
+   - Task C → visual-engineering agent (background)
+4. 自己同时处理 Task D（简单任务）
+5. 收集所有 agent 结果
+6. 统一验证：lint → build → 浏览器测试
+7. 更新 task.json + progress.txt
+8. 一次性 commit
+```
+
+### 委派 prompt 模板（6 段式）
+
+```
+1. TASK: 原子化的具体目标
+2. EXPECTED OUTCOME: 具体交付物和成功标准
+3. REQUIRED TOOLS: 明确允许使用的工具
+4. MUST DO: 详尽的要求（文件路径、保留的代码、颜色值、类名等）
+5. MUST NOT DO: 禁止的操作（不创建新文件、不改其他文件、不加依赖等）
+6. CONTEXT: 当前文件完整内容、相关代码片段
+```
+
+---
+
 ## Key Rules
 
 1. **Ten tasks per session** - Focus on completing ten tasks well

@@ -84,6 +84,18 @@ export const zh: Dictionary = {
       title: "准备好开启您的全球化之旅了吗？",
       button: "立即咨询",
     },
+    globalNetwork: {
+      title: "全球服务网络",
+      subtitle: "覆盖全球核心市场，为品牌提供本地化运营支持",
+      locations: [
+        { name: "深圳", role: "全球总部" },
+        { name: "洛杉矶", role: "北美运营中心" },
+        { name: "伦敦", role: "欧洲运营中心" },
+        { name: "新加坡", role: "东南亚运营中心" },
+        { name: "东京", role: "日本运营中心" },
+        { name: "迪拜", role: "中东运营中心" },
+      ],
+    },
   },
   serviceShared: {
     featuresTitle: "核心服务模块",

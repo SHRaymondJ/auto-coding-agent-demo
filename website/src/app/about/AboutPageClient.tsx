@@ -51,7 +51,7 @@ export function AboutPageClient() {
       <Section background="light">
         <Container>
           <motion.h2
-            className="text-3xl font-bold text-text-heading md:text-4xl"
+            className="text-4xl font-bold text-text-heading md:text-5xl"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -82,7 +82,7 @@ export function AboutPageClient() {
 
       <Section background="white">
         <Container>
-          <h2 className="text-3xl font-bold text-text-heading md:text-4xl">{t.about.milestonesTitle}</h2>
+          <h2 className="text-4xl font-bold text-text-heading md:text-5xl">{t.about.milestonesTitle}</h2>
           <div className="mt-10 space-y-5">
             {milestones.map((item, index) => (
               <motion.div
@@ -104,7 +104,7 @@ export function AboutPageClient() {
 
       <Section background="navy">
         <Container>
-          <h2 className="text-3xl font-bold text-text-white md:text-4xl">{t.about.partnersTitle}</h2>
+          <h2 className="text-4xl font-bold text-text-white md:text-5xl">{t.about.partnersTitle}</h2>
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {t.about.partners.map((partner, index) => (
               <motion.div

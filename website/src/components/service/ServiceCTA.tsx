@@ -23,7 +23,7 @@ export function ServiceCTA({ title, buttonText, buttonHref }: ServiceCTAProps) {
           viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 0.58 }}
         >
-          <h2 className="mx-auto max-w-3xl text-3xl font-bold leading-tight text-text-white md:text-4xl">{title}</h2>
+          <h2 className="mx-auto max-w-3xl text-4xl font-bold leading-tight text-text-white md:text-5xl">{title}</h2>
           <div className="mt-8">
             <Button href={buttonHref} size="lg" className="bg-brand-orange hover:bg-[#e86100] active:bg-[#cf5600]">
               {buttonText}
