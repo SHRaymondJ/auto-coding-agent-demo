@@ -8,9 +8,60 @@ A video processing application with Next.js frontend.
 
 ---
 
+## Agent 类型说明
+
+本项目使用两种 Agent 角色，使用不同的 prompt 但共享相同的工具和环境：
+
+### 初始化 Agent（仅首次运行）
+
+首次启动项目时，Agent 负责：
+1. 根据用户的高层需求，自动展开生成详细的 `task.json`（细粒度功能列表，每个标记 `passes: false`）
+2. 创建 `init.sh` 初始化脚本
+3. 创建 `progress.txt` 进度文件
+4. 做第一次 git commit
+
+**task.json 自动展开规则：**
+- 用户只需提供高层需求描述（如"做一个视频生成平台"）
+- Agent 应自动将其拆解为 **尽可能细粒度** 的功能点（参考：Anthropic 的 claude.ai 克隆项目拆出了 200+ 个功能点）
+- 每个功能点必须是可独立实现和测试的原子任务
+- 使用 JSON 格式（模型不容易篡改 JSON，比 Markdown 更安全）
+- 所有功能初始标记为 `passes: false`
+
+### 编码 Agent（每次 session 重复运行）
+
+后续每次启动，Agent 负责：
+1. 初始化环境并进行健康检查
+2. 选择一个未完成的任务
+3. 增量实现该任务
+4. 测试验证
+5. 更新进度并提交
+
+---
+
 ## MANDATORY: Agent Workflow
 
 Every new agent session MUST follow this workflow:
+
+### Step 0: 健康检查（Smoke Test）
+
+**在开始任何新任务之前，必须先验证项目基础功能正常。**
+
+这一步的目的是：如果上一个 session 留下了隐藏 bug，在这里就能发现，而不是在实现新功能时让问题变得更糟。
+
+```
+1. 运行 ./init.sh 启动开发服务器
+2. 等待服务器就绪
+3. 使用浏览器自动化工具（Playwright MCP）访问 http://localhost:3000
+4. 验证首页能正常加载
+5. 如果项目已有用户认证功能，验证登录流程正常
+6. 如果发现问题 → 立即修复，不要开始新任务
+7. 如果一切正常 → 进入 Step 1
+```
+
+**如果健康检查失败：**
+- 优先修复现有 bug，而不是开始新功能
+- 在 progress.txt 中记录发现的问题和修复过程
+- 修复完成后重新运行健康检查
 
 ### Step 1: Initialize Environment
 
@@ -21,6 +72,7 @@ Every new agent session MUST follow this workflow:
 This will:
 - Install all dependencies
 - Start the development server at http://localhost:3000
+- Run basic health check to verify the app is working
 
 **DO NOT skip this step.** Ensure the server is running before proceeding.
 
@@ -38,6 +90,7 @@ Selection criteria (in order of priority):
 - Read the task description and steps carefully
 - Implement the functionality to satisfy all steps
 - Follow existing code patterns and conventions
+- **每次只做一个功能，不要贪多** — 增量推进是关键
 
 ### Step 4: Test Thoroughly
 
@@ -102,6 +155,20 @@ git commit -m "[task description] - completed"
 - 永远不要删除或修改任务描述
 - 永远不要从列表中移除任务
 - **一个 task 的所有内容（代码、progress.txt、task.json）必须在同一个 commit 中提交**
+- 不可接受删除或编辑 task.json 中的任务描述和步骤，这可能导致功能缺失或 bug
+
+---
+
+## ⚠️ 常见失败模式速查表（Failure Modes Reference）
+
+| 失败模式 | 症状 | 初始化 Agent 的预防措施 | 编码 Agent 的应对措施 |
+|---------|------|----------------------|---------------------|
+| **一口吃成胖子** | 试图一次性完成整个应用，上下文用完后功能写了一半 | 生成细粒度功能列表（200+ 个原子任务） | 每次只做一个任务，做完就 commit |
+| **过早宣布胜利** | 看到项目有进展就认为完成了 | 功能列表中所有任务初始标记 `passes: false` | 读取 task.json，只有全部 `passes: true` 才算完成 |
+| **假完成** | 标记任务完成但没有端到端测试 | 在 CLAUDE.md 中强制要求浏览器测试 | 大幅度 UI 修改必须用 Playwright 浏览器测试 |
+| **环境不干净** | 上一个 session 留下了 bug 或未文档化的进度 | 创建 init.sh 和 progress.txt | 每次 session 开始先跑健康检查（Step 0） |
+| **不知道怎么启动** | Agent 花大量时间搞清楚如何运行项目 | 创建 init.sh 脚本 | 直接运行 init.sh，不要自己猜 |
+| **上下文丢失** | 新 session 不知道之前做了什么 | 创建 progress.txt 和 git 仓库 | 读 progress.txt + git log 快速了解状态 |
 
 ---
 
@@ -203,3 +270,5 @@ npm run lint     # Run linter
 5. **One commit per task** - 所有更改（代码、progress.txt、task.json）必须在同一个 commit 中提交
 6. **Never remove tasks** - Only flip `passes: false` to `true`
 7. **Stop if blocked** - 需要人工介入时，不要提交，输出阻塞信息并停止
+8. **Health check first** - 每次 session 开始先跑健康检查，确认项目没坏再开始新任务
+9. **Never edit task descriptions** - 不可接受删除或编辑 task.json 中的任务描述和步骤
