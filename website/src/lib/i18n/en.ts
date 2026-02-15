@@ -9,8 +9,8 @@ export const en: Dictionary = {
     services: "Services",
     navItems: [
       { label: "Home", href: "/" },
-      { label: "Cases", href: "/cases" },
-      { label: "Insights", href: "/insights" },
+      { label: "Cases", href: "/news/brand-growth-case-home-living" },
+      { label: "Insights", href: "/news" },
       { label: "About Us", href: "/about" },
     ],
     serviceItems: [
@@ -32,9 +32,9 @@ export const en: Dictionary = {
     social: "Social",
     quickLinks: [
       { label: "Home", href: "/" },
-      { label: "Services", href: "/services" },
-      { label: "Cases", href: "/cases" },
-      { label: "Insights", href: "/insights" },
+      { label: "Services", href: "/services/store-operations" },
+      { label: "Cases", href: "/news/brand-growth-case-home-living" },
+      { label: "Insights", href: "/news" },
       { label: "About Us", href: "/about" },
     ],
     phone: "Tel: +86 400-888-8888",

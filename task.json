@@ -831,7 +831,7 @@
         "npm run build 构建成功",
         "PC端和移动端全面测试"
       ],
-      "passes": false
+      "passes": true
     }
   ]
 }

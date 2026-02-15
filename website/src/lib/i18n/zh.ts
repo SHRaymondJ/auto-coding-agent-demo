@@ -9,8 +9,8 @@ export const zh: Dictionary = {
     services: "服务方案",
     navItems: [
       { label: "首页", href: "/" },
-      { label: "成功案例", href: "/cases" },
-      { label: "品牌洞察", href: "/insights" },
+      { label: "成功案例", href: "/news/brand-growth-case-home-living" },
+      { label: "品牌洞察", href: "/news" },
       { label: "关于我们", href: "/about" },
     ],
     serviceItems: [
@@ -32,9 +32,9 @@ export const zh: Dictionary = {
     social: "社交媒体",
     quickLinks: [
       { label: "首页", href: "/" },
-      { label: "服务方案", href: "/services" },
-      { label: "成功案例", href: "/cases" },
-      { label: "品牌洞察", href: "/insights" },
+      { label: "服务方案", href: "/services/store-operations" },
+      { label: "成功案例", href: "/news/brand-growth-case-home-living" },
+      { label: "品牌洞察", href: "/news" },
       { label: "关于我们", href: "/about" },
     ],
     phone: "电话：+86 400-888-8888",

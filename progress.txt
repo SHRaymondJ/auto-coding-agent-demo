@@ -1,5 +1,27 @@
 # Progress Log
 
+## 2026-02-15 - Task 61: 设计稿还原最终验证
+
+### What was done:
+- npm run lint 通过（0 errors）
+- npm run build 通过（30 页面静态生成）
+- Playwright 浏览器自动化验证 8 个关键页面全部正常加载（/, /services/store-operations, /news, /news/[slug], /culture, /contact, /about, /design-hub）
+- 移动端首页验证（375x812 viewport）：无横向溢出，滚动正常
+- 站内链接可达性检查：21 个链接全部可访问
+- 修复了导航/页脚中的死链（/cases → /news/..., /insights → /news, /services → /services/store-operations）
+
+### Testing:
+- npm run lint 通过
+- npm run build 通过
+- Playwright 浏览器测试全部通过
+- 移动端 375px 测试通过
+
+### Notes:
+- 所有 61 个任务全部完成（passes: true）
+- 修复的死链涉及 zh.ts 和 en.ts 的 header.navItems 和 footer.quickLinks
+
+---
+
 ## 2026-02-15 - Tasks 51-60: 全站设计稿还原收尾 + 新页面 + 兼容性（并行委派）
 
 ### What was done:
