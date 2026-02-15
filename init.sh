@@ -1,10 +1,9 @@
 #!/bin/bash
 
 # =============================================================================
-# init.sh - Project Initialization Script
+# init.sh - Spring FES 企业官网项目初始化脚本
 # =============================================================================
-# Run this script at the start of every session to ensure the environment
-# is properly set up and the development server is running.
+# 每次 session 开始时运行此脚本，确保环境正确并启动开发服务器。
 # =============================================================================
 
 set -e
@@ -15,18 +14,18 @@ YELLOW='\033[1;33m'
 RED='\033[0;31m'
 NC='\033[0m'
 
-echo -e "${YELLOW}Initializing Spring FES Video project...${NC}"
+echo -e "${YELLOW}Initializing Spring FES Corporate Website...${NC}"
 
-# Check if hello-nextjs directory exists
-if [ ! -d "hello-nextjs" ]; then
-  echo -e "${RED}✗ hello-nextjs directory not found!${NC}"
+# Check if website directory exists
+if [ ! -d "website" ]; then
+  echo -e "${RED}✗ website directory not found!${NC}"
   echo "Please create the Next.js project first."
   exit 1
 fi
 
 # Install dependencies
 echo "Installing dependencies..."
-cd hello-nextjs && npm install && cd ..
+cd website && npm install && cd ..
 
 # Kill any existing dev server on port 3000
 if lsof -ti:3000 > /dev/null 2>&1; then
@@ -37,7 +36,7 @@ fi
 
 # Start development server in background
 echo "Starting development server..."
-cd hello-nextjs
+cd website
 npm run dev &
 SERVER_PID=$!
 cd ..
@@ -72,7 +71,7 @@ echo -e "${GREEN}✓ Initialization complete!${NC}"
 echo -e "${GREEN}✓ Dev server running at http://localhost:3000 (PID: $SERVER_PID)${NC}"
 echo ""
 echo "Next steps:"
-echo "  1. Use Playwright MCP to verify the app works in browser"
+echo "  1. Use browser automation to verify the app works"
 echo "  2. Read progress.txt and git log to understand current state"
 echo "  3. Read task.json and pick the next incomplete task"
 echo ""

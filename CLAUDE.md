@@ -1,10 +1,13 @@
-# Spring FES Video - Project Instructions
+# Spring FES Corporate Website - Project Instructions
 
 ## Project Context
 
-A video processing application with Next.js frontend.
+Spring FES 跨境电商品牌服务公司的企业官网。纯前端静态站点，基于 Figma 设计稿开发。
 
-> Note: Detailed project requirements will be added to task.json as they are defined.
+- 设计稿：https://www.figma.com/design/Cbcg9NNlUPJfd6iuUHru5g/官网UI--开发用-
+- 技术栈：Next.js 14+ (App Router) + TypeScript + Tailwind CSS + Framer Motion
+- 项目目录：website/
+- 无后端、无数据库、无认证，纯静态页面
 
 ---
 
@@ -179,17 +182,14 @@ git commit -m "[task description] - completed"
 ### 需要停止任务并请求人工帮助的情况：
 
 1. **缺少环境配置**：
-   - .env.local 需要填写真实的 API 密钥
-   - Supabase 项目需要创建和配置
+   - 需要特定的第三方服务配置
    - 外部服务需要开通账号
 
 2. **外部依赖不可用**：
-   - 第三方 API 服务宕机
-   - 需要人工授权的 OAuth 流程
+   - 第三方服务宕机
    - 需要付费升级的服务
 
 3. **测试无法进行**：
-   - 登录/注册功能需要真实用户账号
    - 功能依赖外部系统尚未部署
    - 需要特定硬件环境
 
@@ -237,7 +237,7 @@ git commit -m "[task description] - completed"
 ├── task.json          # Task definitions (source of truth)
 ├── progress.txt       # Progress log from each session
 ├── init.sh            # Initialization script
-└── hello-nextjs/      # Next.js application
+└── website/           # Next.js application
     ├── src/app/       # App Router pages
     ├── src/components/
     └── ...
@@ -246,7 +246,7 @@ git commit -m "[task description] - completed"
 ## Commands
 
 ```bash
-# In hello-nextjs/
+# In website/
 npm run dev      # Start dev server
 npm run build    # Production build
 npm run lint     # Run linter
