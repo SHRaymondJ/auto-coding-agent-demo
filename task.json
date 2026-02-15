@@ -236,7 +236,7 @@
         "创建 components/service/ServiceCTA.tsx（底部咨询引导）",
         "所有组件支持通过 props 传入不同内容"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 17,
@@ -251,7 +251,7 @@
         "底部 CTA",
         "响应式适配"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 18,
@@ -266,7 +266,7 @@
         "底部 CTA",
         "响应式适配"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 19,
@@ -280,7 +280,7 @@
         "底部 CTA",
         "响应式适配"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 20,
@@ -294,7 +294,7 @@
         "底部 CTA",
         "响应式适配"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 21,
@@ -308,7 +308,7 @@
         "底部 CTA",
         "响应式适配"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 22,
@@ -322,7 +322,7 @@
         "底部 CTA",
         "响应式适配"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 23,
@@ -336,7 +336,7 @@
         "底部 CTA",
         "响应式适配"
       ],
-      "passes": false
+      "passes": true
     },
     {
       "id": 24,

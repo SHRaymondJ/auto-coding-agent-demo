@@ -28,6 +28,29 @@
 - Inter 字体通过 next/font 加载
 - 所有视觉占位使用 CSS 渐变/形状，无外部图片依赖
 
+## 2026-02-15 - Tasks 16-23: 服务子页面
+
+### What was done:
+- Task 16: 服务页通用模板组件（ServiceHero, ServiceFeatures, ServiceProcess, ServiceCTA）
+- Task 17: 店铺运营页面 /services/store-operations
+- Task 18: 仓储物流页面 /services/logistics
+- Task 19: 客户服务页面 /services/customer-service
+- Task 20: IT解决方案页面 /services/it-solutions
+- Task 21: 内容直播页面 /services/live-streaming
+- Task 22: 创意工作室页面 /services/creative-studio
+- Task 23: 品牌增长页面 /services/brand-growth
+- 额外：创建兼容路由（shop-operations, warehouse-logistics, content-live）匹配 Header 下拉链接
+
+### Testing:
+- npm run lint 通过
+- npm run build 通过（10个服务路由全部静态生成）
+- 浏览器验证所有路由正常渲染
+
+### Notes:
+- 每个服务页面有独立的 SEO metadata
+- 使用 framer-motion 滚动动画
+- 服务流程使用步骤连接线设计
+
 ---
 
 ## Template for New Entries
