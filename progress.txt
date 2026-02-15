@@ -1,5 +1,35 @@
 # Progress Log
 
+## 2026-02-15 - Tasks 1-15: 项目初始化 + 设计系统 + 公共组件 + 首页
+
+### What was done:
+- Task 1: 创建 Next.js 项目（website/），配置 TS strict, Tailwind CSS, ESLint
+- Task 2: 在 globals.css 中定义品牌色、文字色、背景色、字体、间距变量
+- Task 3-5: Header 导航栏（PC端固定导航 + 服务方案下拉 + 移动端汉堡菜单）
+- Task 6: Footer 页脚（4列布局、联系信息、社交媒体、版权）
+- Task 7: Layout/Container/Section 布局组件
+- Task 8: Button 组件（primary/secondary/text variants, sm/md/lg sizes）
+- Task 9: Hero 首屏（标题、副标题、CTA按钮、CSS渐变视觉元素）
+- Task 10: 信任背书区域（合作伙伴Logo文字占位）
+- Task 11: 核心服务四宫格卡片（hover效果）
+- Task 12: 数据统计（framer-motion 计数动画）
+- Task 13: 品牌优势三列展示
+- Task 14: 底部CTA（深色背景）
+- Task 15: 滚动动画（framer-motion 淡入+上移）
+
+### Testing:
+- npm run lint 通过
+- npm run build 通过
+- 浏览器测试：首页所有板块正常渲染，Header/Footer完整
+
+### Notes:
+- 使用 Tailwind CSS v4 @theme inline 语法定义设计变量
+- 颜色使用 CSS 变量：--color-brand-navy, --color-brand-blue 等
+- Inter 字体通过 next/font 加载
+- 所有视觉占位使用 CSS 渐变/形状，无外部图片依赖
+
+---
+
 ## Template for New Entries
 
 ```
