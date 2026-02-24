@@ -81,8 +81,8 @@ export function Header() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 border-b border-transparent transition-all duration-300",
         isScrolled
-          ? "bg-bg-white/95 shadow-md backdrop-blur supports-[backdrop-filter]:bg-bg-white/80 supports-[(-webkit-backdrop-filter:blur(0))]:bg-bg-white/80"
-          : "bg-transparent",
+          ? "border-b border-gray-100 bg-bg-white shadow-sm"
+          : "border-b border-gray-100 bg-bg-white",
         isHidden && !isMobileOpen ? "-translate-y-full" : "translate-y-0",
       )}
     >

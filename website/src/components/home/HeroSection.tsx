@@ -7,18 +7,16 @@ import { Container } from "@/components/layout/Container";
 import { useLanguage } from "@/lib/i18n";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0 },
 };
-
-const smoothEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const staggerContainer = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.14,
-      delayChildren: 0.08,
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
     },
   },
 };
@@ -27,71 +25,55 @@ export function HeroSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative flex min-h-[92vh] items-center overflow-hidden bg-[linear-gradient(140deg,#001b3d_0%,#003366_38%,#0059b3_100%)] pt-24 text-text-white sm:min-h-screen sm:pt-28">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_20%,rgba(34,211,238,0.2),transparent_36%),radial-gradient(circle_at_84%_24%,rgba(255,107,0,0.18),transparent_34%),radial-gradient(circle_at_72%_84%,rgba(0,123,255,0.24),transparent_40%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:72px_72px] opacity-20" />
-      <div className="pointer-events-none absolute left-[8%] top-32 h-2 w-2 rounded-full bg-brand-cyan/90 shadow-[0_0_20px_rgba(34,211,238,0.8)]" />
-      <div className="pointer-events-none absolute left-[16%] top-2/3 h-px w-28 rotate-12 bg-gradient-to-r from-brand-cyan/0 via-brand-cyan/70 to-brand-cyan/0" />
-      <div className="pointer-events-none absolute right-[8%] top-28 h-3 w-3 rounded-full border border-brand-orange/80" />
-      <div className="pointer-events-none absolute right-[18%] top-[64%] h-24 w-24 rounded-full border border-bg-white/20" />
-      <Container className="relative">
+    <section className="min-h-[85vh] bg-[#FFFFFF] pt-24">
+      <Container>
         <motion.div
-          className="grid grid-cols-1 items-center gap-10 will-change-transform lg:grid-cols-2 lg:gap-20"
+          className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
+          viewport={{ once: true, amount: 0.3 }}
           variants={staggerContainer}
         >
           <motion.div
-            className="relative transform-gpu text-center will-change-transform lg:text-left"
+            className="text-center lg:text-left"
             variants={fadeUp}
-            transition={{ duration: 0.62, ease: smoothEase }}
+            transition={{ duration: 0.5 }}
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brand-cyan/90 sm:text-sm sm:tracking-[0.24em]">Spring FES</p>
-            <h1 className="mx-auto mt-5 max-w-2xl text-3xl font-bold leading-[1.08] text-text-white sm:mt-6 sm:text-5xl lg:mx-0 lg:text-7xl">
+            <p className="text-xs font-semibold uppercase tracking-wide text-[#007BFF] sm:text-sm">Spring FES</p>
+            <h1 className="mx-auto mt-5 max-w-2xl text-4xl font-bold leading-tight text-[#0F172A] sm:text-5xl lg:mx-0 lg:text-6xl">
               {t.home.hero.title}
             </h1>
-            <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-bg-white/85 sm:mt-7 sm:text-lg lg:mx-0">
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[#475569] sm:text-lg lg:mx-0">
               {t.home.hero.subtitle}
             </p>
-            <div className="mx-auto mt-8 flex w-full max-w-sm flex-col items-stretch gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4 lg:mx-0 lg:justify-start">
-              <div className="relative w-full sm:w-auto">
-                <div className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-brand-orange/65 blur-xl" />
-                <Button size="lg" href="/contact" className="relative w-full justify-center bg-brand-orange text-white shadow-[0_12px_36px_rgba(255,107,0,0.35)] hover:bg-brand-orange/90 sm:w-auto">
-                  {t.home.hero.primaryCta}
-                </Button>
-              </div>
-              <Button size="lg" variant="secondary" href="#core-services" className="w-full justify-center sm:w-auto">
+            <div className="mx-auto mt-8 flex w-full max-w-sm flex-col items-stretch gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:items-center sm:justify-center sm:gap-4 lg:mx-0 lg:justify-start">
+              <Button
+                size="lg"
+                variant="primary"
+                href="/contact"
+                className="w-full justify-center rounded-lg bg-[#007BFF] text-white hover:bg-[#006EE6] sm:w-auto"
+              >
+                {t.home.hero.primaryCta}
+              </Button>
+              <Button
+                size="lg"
+                variant="secondary"
+                href="#core-services"
+                className="w-full justify-center rounded-lg sm:w-auto"
+              >
                 {t.home.hero.secondaryCta}
               </Button>
             </div>
           </motion.div>
 
           <motion.div
-            className="relative mx-auto hidden h-[380px] w-full max-w-[540px] transform-gpu will-change-transform sm:h-[430px] lg:block"
+            className="hidden h-full w-full items-center justify-center lg:flex"
             variants={fadeUp}
-            transition={{ duration: 0.68, ease: smoothEase }}
+            transition={{ duration: 0.5, delay: 0.08 }}
           >
-            <div className="absolute inset-0 rounded-[2.5rem] border border-bg-white/15 bg-bg-dark/25 backdrop-blur-[2px]" />
-            <div className="absolute inset-[12%] rounded-full bg-[radial-gradient(circle_at_32%_28%,rgba(34,211,238,0.58),rgba(0,123,255,0.2)_38%,rgba(15,23,42,0.92)_72%)] blur-[1px]" />
-            <div className="absolute inset-[8%] rounded-full border border-brand-cyan/35" />
-            <div className="absolute inset-[16%] rounded-full border border-bg-white/35" />
-            <div className="absolute inset-[24%] rounded-full border border-brand-blue/45" />
-            <div className="absolute inset-[8%] rounded-full bg-[linear-gradient(180deg,transparent_0%,rgba(255,255,255,0.12)_48%,transparent_100%)]" />
-            <div className="absolute inset-[11%] rounded-full bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.16)_50%,transparent_100%)]" />
-
-            <div className="absolute left-[20%] top-[30%] h-1.5 w-1.5 rounded-full bg-brand-cyan shadow-[0_0_14px_rgba(34,211,238,0.9)]" />
-            <div className="absolute right-[23%] top-[40%] h-2 w-2 rounded-full bg-bg-white shadow-[0_0_14px_rgba(255,255,255,0.8)]" />
-            <div className="absolute left-[35%] bottom-[28%] h-2 w-2 rounded-full bg-brand-orange shadow-[0_0_18px_rgba(255,107,0,0.8)]" />
-            <div className="absolute right-[34%] bottom-[18%] h-1.5 w-1.5 rounded-full bg-brand-cyan shadow-[0_0_14px_rgba(34,211,238,0.9)]" />
-
-            <div className="absolute left-[22%] top-[31%] h-px w-[31%] rotate-[16deg] bg-gradient-to-r from-brand-cyan/10 via-brand-cyan/90 to-bg-white/15" />
-            <div className="absolute left-[38%] top-[54%] h-px w-[26%] -rotate-[12deg] bg-gradient-to-r from-bg-white/10 via-bg-white/80 to-brand-blue/20" />
-            <div className="absolute left-[35%] top-[73%] h-px w-[22%] rotate-[8deg] bg-gradient-to-r from-brand-orange/10 via-brand-orange/80 to-brand-cyan/20" />
-
-            <div className="absolute -left-6 top-20 h-20 w-20 rounded-full border border-brand-cyan/30" />
-            <div className="absolute -right-2 bottom-16 h-28 w-28 rounded-full border border-brand-orange/35" />
-            <div className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-orange shadow-[0_0_36px_10px_rgba(255,107,0,0.4)]" />
+            <div className="flex min-h-[400px] w-full max-w-[560px] items-center justify-center rounded-2xl border border-slate-200 bg-[#F1F5F9] text-base font-medium text-slate-500">
+              Image Placeholder
+            </div>
           </motion.div>
         </motion.div>
       </Container>

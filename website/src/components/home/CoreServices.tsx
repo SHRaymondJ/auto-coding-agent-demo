@@ -8,67 +8,100 @@ import { useLanguage } from "@/lib/i18n";
 
 const smoothEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
+const serviceIcons = [
+  <svg
+    key="truck"
+    viewBox="0 0 24 24"
+    className="h-6 w-6"
+    fill="none"
+    stroke="#007BFF"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M3 7h11v8H3z" />
+    <path d="M14 10h3l3 3v2h-6z" />
+    <circle cx="7" cy="17" r="1.5" />
+    <circle cx="17" cy="17" r="1.5" />
+  </svg>,
+  <svg
+    key="megaphone"
+    viewBox="0 0 24 24"
+    className="h-6 w-6"
+    fill="none"
+    stroke="#007BFF"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M4 12v-2l10-4v12L4 14z" />
+    <path d="M8 14l1.2 4.2a1 1 0 0 0 1 .8h1.3" />
+    <path d="M16.5 9.5a3.5 3.5 0 0 1 0 5" />
+  </svg>,
+  <svg
+    key="shopping-bag"
+    viewBox="0 0 24 24"
+    className="h-6 w-6"
+    fill="none"
+    stroke="#007BFF"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M6 8h12l-1 11H7z" />
+    <path d="M9 8a3 3 0 0 1 6 0" />
+  </svg>,
+  <svg
+    key="headset"
+    viewBox="0 0 24 24"
+    className="h-6 w-6"
+    fill="none"
+    stroke="#007BFF"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M4 13a8 8 0 0 1 16 0" />
+    <rect x="4" y="12" width="3" height="6" rx="1" />
+    <rect x="17" y="12" width="3" height="6" rx="1" />
+    <path d="M20 18a2 2 0 0 1-2 2h-2" />
+  </svg>,
+];
+
 export function CoreServices() {
   const { t } = useLanguage();
-  const iconThemes = [
-    {
-      shell: "border-brand-blue/20 bg-gradient-to-br from-brand-blue/20 via-brand-cyan/15 to-transparent text-brand-blue",
-      glyph: "bg-gradient-to-br from-brand-blue to-brand-cyan",
-      pulse: "bg-brand-cyan/20",
-    },
-    {
-      shell: "border-brand-navy/20 bg-gradient-to-br from-brand-navy/20 via-brand-blue/15 to-transparent text-brand-navy",
-      glyph: "bg-gradient-to-br from-brand-navy to-brand-blue",
-      pulse: "bg-brand-blue/20",
-    },
-    {
-      shell: "border-brand-orange/25 bg-gradient-to-br from-brand-orange/20 via-brand-orange/10 to-transparent text-brand-orange",
-      glyph: "bg-gradient-to-br from-brand-orange to-brand-blue",
-      pulse: "bg-brand-orange/20",
-    },
-    {
-      shell: "border-brand-cyan/25 bg-gradient-to-br from-brand-cyan/20 via-brand-blue/10 to-transparent text-brand-cyan",
-      glyph: "bg-gradient-to-br from-brand-cyan to-brand-navy",
-      pulse: "bg-brand-cyan/20",
-    },
-  ];
 
   return (
     <Section id="core-services" background="white">
       <Container>
         <motion.div
-          className="will-change-transform"
-          initial={{ opacity: 0, y: 24 }}
+          className="text-center"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.62, ease: smoothEase }}
+          transition={{ duration: 0.55, ease: smoothEase }}
         >
-          <h2 className="text-3xl font-bold text-text-heading sm:text-4xl md:text-5xl">{t.home.coreServices.title}</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-text-heading">{t.home.coreServices.title}</h2>
+          <p className="text-base sm:text-lg text-text-body mt-3">{t.home.coreServices.subtitle}</p>
         </motion.div>
 
-        <div className="mt-10 grid grid-cols-1 gap-5 sm:mt-12 sm:gap-6 md:grid-cols-2">
+        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
           {t.home.coreServices.services.map((service, index) => (
             <motion.article
               key={service.title}
-              className="group relative overflow-hidden rounded-3xl border border-border-default/70 bg-gradient-to-br from-bg-light via-white to-bg-gray p-6 shadow-[0_10px_30px_rgba(2,20,42,0.08)] transition-all duration-300 transform-gpu will-change-transform hover:-translate-y-1 hover:shadow-xl sm:p-8"
-              initial={{ opacity: 0, y: 24 }}
+              className="rounded-2xl border border-gray-100 bg-white p-8 shadow-[0_4px_20px_rgba(0,0,0,0.06)]"
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.6, delay: index * 0.07, ease: smoothEase }}
+              transition={{ duration: 0.45, delay: index * 0.08, ease: smoothEase }}
             >
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.12),transparent_52%)] opacity-70 transition-opacity duration-300 group-hover:opacity-100" />
-              <div className="relative">
-                <span
-                  className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl border backdrop-blur-sm transition-transform duration-300 group-hover:scale-105 ${iconThemes[index % iconThemes.length].shell}`}
-                >
-                  <span className={`relative block h-6 w-6 rounded-md ${iconThemes[index % iconThemes.length].glyph}`}>
-                    <span className={`absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full ${iconThemes[index % iconThemes.length].pulse}`} />
-                    <span className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-white/90" />
-                  </span>
-                </span>
-                <h3 className="mt-5 text-xl font-semibold tracking-tight text-text-heading sm:mt-6 sm:text-2xl">{service.title}</h3>
-                <p className="mt-3 max-w-[40ch] text-sm leading-relaxed text-text-body sm:text-base">{service.description}</p>
-              </div>
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50">{serviceIcons[index]}</div>
+              <h3 className="mt-5 text-xl font-semibold text-text-heading">{service.title}</h3>
+              <p className="mt-3 text-sm sm:text-base text-text-body leading-relaxed">{service.description}</p>
             </motion.article>
           ))}
         </div>

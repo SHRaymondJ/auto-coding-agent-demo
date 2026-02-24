@@ -67,13 +67,30 @@ export interface Dictionary {
       primaryCta: string;
       secondaryCta: string;
     };
+    partners: {
+      title: string;
+      logos: string[];
+    };
     coreServices: {
       title: string;
+      subtitle: string;
       services: { title: string; description: string }[];
     };
+    oneStopSolution: {
+      title: string;
+      subtitle: string;
+      services: { title: string; items: string }[];
+      ctaText: string;
+      ctaButton: string;
+    };
     stats: { value: number; suffix: string; label: string }[];
+    serviceProcess: {
+      title: string;
+      subtitle: string;
+      steps: { number: string; title: string; description: string }[];
+    };
     whyChooseUs: { title: string; items: { title: string; description: string }[] };
-    bottomCta: { title: string; button: string };
+    bottomCta: { title: string; subtitle: string; button: string };
     globalNetwork: {
       title: string;
       subtitle: string;

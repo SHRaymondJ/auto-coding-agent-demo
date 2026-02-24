@@ -44,25 +44,55 @@ export const en: Dictionary = {
   },
   home: {
     hero: {
-      title: "Global Brand Growth Engine",
-      subtitle: "Empowering Chinese brands to leap from 0 to 1, and from 1 to global growth",
-      primaryCta: "Start Your Global Journey",
+      title: "Elevate Your Brand with Expert E-commerce Solutions",
+      subtitle: "Empowering cross-border brands to scale globally with end-to-end service from strategy to execution.",
+      primaryCta: "Explore Services",
       secondaryCta: "Learn More",
     },
+    partners: {
+      title: "Our Partners",
+      logos: ["TikTok Shop", "TEMU", "SHEIN", "AliExpress", "Shopee"],
+    },
     coreServices: {
-      title: "End-to-End Global Services",
+      title: "Our Services",
+      subtitle: "Comprehensive support for brands going global",
       services: [
-        { title: "Brand Globalization Consulting", description: "Market research, competitor benchmarking, and positioning" },
-        { title: "Omni-Channel Operations", description: "Amazon, TikTok Shop, Shopify, and multi-channel operations" },
-        { title: "Digital Marketing", description: "Google/Meta paid media and KOL/KOC campaigns" },
-        { title: "Global Supply Chain", description: "Overseas warehousing, cross-border logistics, and customs compliance" },
+        { title: "Cross-border Logistics", description: "Efficient, reliable global logistics solutions covering warehousing, customs clearance, and last-mile delivery." },
+        { title: "Brand Marketing", description: "Customized overseas marketing strategies including social media, influencer marketing, and ad placement." },
+        { title: "Store Operations", description: "Full-platform (TikTok, Amazon, etc.) store management to boost conversion and sales." },
+        { title: "Customer Support", description: "Multilingual customer service team providing 24/7 professional consultation and after-sales service." },
       ],
     },
+    oneStopSolution: {
+      title: "One-Stop Solution",
+      subtitle: "Leveraging strong supply chain capabilities and professional operations teams to provide full lifecycle services for brands.",
+      services: [
+        { title: "Brand Incubation", items: "Market research, competitor analysis, brand positioning, product planning." },
+        { title: "Omnichannel Operations", items: "Amazon, TikTok, DTC sites and multi-platform operations with closed-loop traffic." },
+        { title: "Digital Marketing", items: "Influencer marketing, social media operations, ad placement, content creation." },
+        { title: "Warehousing & Logistics", items: "Overseas warehousing, FBA/FBM delivery, returns handling, customs consulting." },
+      ],
+      ctaText: "Customized service solutions for enterprises at different stages and scales",
+      ctaButton: "Consult Now",
+    },
     stats: [
-      { value: 500, suffix: "+", label: "Brands Served" },
-      { value: 100, suffix: "+", label: "Countries Covered" },
-      { value: 10, suffix: "B+", label: "GMV Driven" },
+      { value: 6200, suffix: "+", label: "Global Influencer Partners" },
+      { value: 5000, suffix: "+", label: "Brand Clients Served" },
+      { value: 200, suffix: "M+", label: "Total Fan Coverage" },
+      { value: 150, suffix: "M+", label: "Total Video Views" },
     ],
+    serviceProcess: {
+      title: "Full-Link Service Process",
+      subtitle: "From brand strategy to execution, we provide one-stop closed-loop services",
+      steps: [
+        { number: "01", title: "Brand Positioning & Strategy", description: "Develop differentiated brand competitive strategies based on deep market insights." },
+        { number: "02", title: "Visual Identity Design", description: "Create visual systems that meet international aesthetics with strong brand recognition." },
+        { number: "03", title: "E-commerce Platform Setup", description: "Full-channel store setup on DTC sites, Amazon, and other major platforms." },
+        { number: "04", title: "Integrated Marketing", description: "On-site and off-site advertising, influencer marketing, and social media operations." },
+        { number: "05", title: "Content Creation & Operations", description: "Deep content refinement to enhance user engagement and brand loyalty." },
+        { number: "06", title: "Data-Driven Decisions", description: "Real-time multi-dimensional data monitoring for continuous growth optimization." },
+      ],
+    },
     whyChooseUs: {
       title: "Why Choose Us",
       items: [
@@ -81,7 +111,8 @@ export const en: Dictionary = {
       ],
     },
     bottomCta: {
-      title: "Ready to start your global expansion?",
+      title: "Focus on Cross-border E-commerce, Build Global Brands",
+      subtitle: "Partner with Spring FES, start your globalization journey",
       button: "Contact Us",
     },
     globalNetwork: {

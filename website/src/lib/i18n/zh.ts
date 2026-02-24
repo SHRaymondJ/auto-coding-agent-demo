@@ -44,25 +44,55 @@ export const zh: Dictionary = {
   },
   home: {
     hero: {
-      title: "全球化品牌增长引擎",
-      subtitle: "助力中国出海品牌，实现从0到1，从1到全球的跨越式增长",
-      primaryCta: "开启全球化之旅",
+      title: "Elevate Your Brand with Expert E-commerce Solutions",
+      subtitle: "Empowering cross-border brands to scale globally with end-to-end service from strategy to execution.",
+      primaryCta: "Explore Services",
       secondaryCta: "了解更多",
     },
+    partners: {
+      title: "我们的合作伙伴",
+      logos: ["TikTok Shop", "TEMU", "SHEIN", "AliExpress", "Shopee"],
+    },
     coreServices: {
-      title: "全链路出海服务",
+      title: "我们的服务",
+      subtitle: "全方位助力品牌出海",
       services: [
-        { title: "品牌出海咨询", description: "市场调研、竞品分析、品牌定位" },
-        { title: "全球全渠道运营", description: "Amazon、TikTok Shop、Shopify 等渠道运营" },
-        { title: "数字化营销推广", description: "Google/Meta 广告投流、KOL/KOC 红人营销" },
-        { title: "全球供应链管理", description: "海外仓储、跨境物流、清关报检" },
+        { title: "跨境物流", description: "提供高效、可靠的全球物流解决方案，涵盖仓储、报关及尾程派送。" },
+        { title: "品牌营销", description: "定制化海外营销策略，包括社媒运营、红人营销及广告投放。" },
+        { title: "店铺运营", description: "全平台（TikTok, Amazon, etc.）店铺代运营，提升转化与销量。" },
+        { title: "客户支持", description: "多语言客服团队，提供 7x24 小时专业咨询与售后服务。" },
       ],
     },
+    oneStopSolution: {
+      title: "一站式解决方案",
+      subtitle: "依托强大的供应链能力和专业运营团队，为品牌提供从 0 到 1 的全生命周期服务。",
+      services: [
+        { title: "品牌孵化", items: "市场调研、竞品分析、品牌定位、产品规划。" },
+        { title: "全域运营", items: "亚马逊、TikTok、独立站等多平台运营，站内外流量闭环。" },
+        { title: "数字营销", items: "红人营销、社媒运营、广告投放、内容创作。" },
+        { title: "仓储物流", items: "海外仓储、FBA/FBM 配送、售后退换货、关务咨询。" },
+      ],
+      ctaText: "针对不同阶段、不同规模的企业提供定制化服务方案",
+      ctaButton: "立即咨询",
+    },
     stats: [
-      { value: 500, suffix: "+", label: "服务品牌" },
-      { value: 100, suffix: "+", label: "覆盖国家" },
-      { value: 10, suffix: "B+", label: "助力GMV" },
+      { value: 6200, suffix: "+", label: "全球合作红人总数" },
+      { value: 5000, suffix: "+", label: "累计服务的品牌客户" },
+      { value: 200, suffix: "M+", label: "全网覆盖粉丝总量" },
+      { value: 150, suffix: "M+", label: "累计视频总播放量" },
     ],
+    serviceProcess: {
+      title: "全链路服务流程",
+      subtitle: "从品牌出海策略到落地执行，我们提供一站式闭环服务",
+      steps: [
+        { number: "01", title: "品牌定位与策略", description: "基于深度市场洞察，制定差异化品牌竞争策略。" },
+        { number: "02", title: "视觉形象设计", description: "打造符合国际审美、具备品牌辨识度的视觉体系。" },
+        { number: "03", title: "电商平台搭建", description: "独立站、亚马逊等主流平台全渠道开店与装修。" },
+        { number: "04", title: "整合营销推广", description: "站内外广告投放、红人营销及社交媒体运营。" },
+        { number: "05", title: "内容创作与运营", description: "深度内容打磨，提升用户粘性与品牌忠诚度。" },
+        { number: "06", title: "数据驱动决策", description: "实时监控多维度数据，持续优化增长闭环。" },
+      ],
+    },
     whyChooseUs: {
       title: "为什么选择我们",
       items: [
@@ -81,7 +111,8 @@ export const zh: Dictionary = {
       ],
     },
     bottomCta: {
-      title: "准备好开启您的全球化之旅了吗？",
+      title: "专注跨境电商，打造全球品牌",
+      subtitle: "携手 Spring FES，开启您的全球化之旅",
       button: "立即咨询",
     },
     globalNetwork: {
